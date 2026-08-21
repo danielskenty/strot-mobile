@@ -39,7 +39,7 @@ class ApprovalsScreen extends StatelessWidget {
                           contentPadding: const EdgeInsets.all(StrotSpacing.md),
                           title: Text(item.title),
                           subtitle: Text(
-                            '${item.projectReference} · Version ${item.version}\nDue ${item.dueAt.day} Aug 2026',
+                            '${item.projectReference} · Version ${item.version}\n${item.currentStepLabel ?? item.status.name} · Due ${item.dueAt.day} Aug 2026',
                           ),
                           isThreeLine: true,
                           trailing: const Icon(Icons.arrow_forward),
@@ -172,8 +172,86 @@ class _ApprovalReviewScreenState extends State<ApprovalReviewScreen> {
             ),
           ),
         ),
+        if (widget.approval.steps.isNotEmpty) ...[
+          const SizedBox(height: StrotSpacing.md),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(StrotSpacing.lg),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Approval sequence',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: StrotSpacing.md),
+                  ...widget.approval.steps.map(
+                    (step) => Container(
+                      margin: const EdgeInsets.only(bottom: StrotSpacing.sm),
+                      padding: const EdgeInsets.all(StrotSpacing.md),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: step.status == ApprovalStepStatus.pending
+                              ? StrotColors.gold
+                              : StrotColors.forestMuted,
+                        ),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${step.sequence}',
+                            style: Theme.of(context).textTheme.headlineSmall
+                                ?.copyWith(color: StrotColors.gold),
+                          ),
+                          const SizedBox(width: StrotSpacing.md),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  step.label,
+                                  style: const TextStyle(
+                                    color: StrotColors.forest,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Text(
+                                  step.reviewerName ??
+                                      (step.status == ApprovalStepStatus.waiting
+                                          ? 'Begins after the prior stage'
+                                          : 'Awaiting assigned reviewer'),
+                                ),
+                                if (step.note != null)
+                                  Text(
+                                    step.note!,
+                                    style: const TextStyle(
+                                      color: StrotColors.gold,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            step.status.name,
+                            style: const TextStyle(
+                              color: StrotColors.forest,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
         const SizedBox(height: StrotSpacing.md),
-        if (!complete)
+        if (!complete &&
+            (widget.approval.currentReviewerRole == null ||
+                widget.approval.currentReviewerRole == 'client'))
           Card(
             child: Padding(
               padding: const EdgeInsets.all(StrotSpacing.lg),

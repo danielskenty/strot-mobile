@@ -1,11 +1,35 @@
 class ProjectMilestone {
   const ProjectMilestone({
+    required this.id,
     required this.title,
     required this.status,
+    this.description,
+    this.ownerLabel,
     this.dueAt,
+    this.completedAt,
+    this.completionNote,
+    this.requirements = const [],
   });
+  final int id;
   final String title, status;
-  final DateTime? dueAt;
+  final String? description, ownerLabel, completionNote;
+  final DateTime? dueAt, completedAt;
+  final List<MilestoneRequirement> requirements;
+  int get completedRequirements =>
+      requirements.where((item) => item.complete).length;
+  bool get isReady => requirements.every((item) => item.complete);
+}
+
+class MilestoneRequirement {
+  const MilestoneRequirement({
+    required this.key,
+    required this.label,
+    required this.complete,
+    this.deepLink,
+  });
+  final String key, label;
+  final bool complete;
+  final String? deepLink;
 }
 
 class ProjectSummary {
@@ -14,8 +38,14 @@ class ProjectSummary {
     required this.currency,
     required this.pendingApprovals,
     required this.evidenceProgress,
+    required this.approvedTotalMinor,
+    required this.milestoneProgress,
   });
-  final int paidMinor, pendingApprovals, evidenceProgress;
+  final int paidMinor,
+      approvedTotalMinor,
+      pendingApprovals,
+      evidenceProgress,
+      milestoneProgress;
   final String currency;
 }
 

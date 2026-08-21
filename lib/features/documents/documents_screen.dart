@@ -14,6 +14,7 @@ class DocumentsScreen extends StatefulWidget {
 class _DocumentsScreenState extends State<DocumentsScreen> {
   bool uploading = false;
   bool uploaded = false;
+  String? error;
   Future<void> pickAndUpload() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -83,12 +84,23 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       return;
     }
     setState(() => uploading = true);
-    await widget.service.upload(
-      name: file.name,
-      bytes: file.bytes!,
-      kind: kind,
-      caption: caption.text.trim(),
-    );
+    try {
+      await widget.service.upload(
+        name: file.name,
+        bytes: file.bytes!,
+        kind: kind,
+        caption: caption.text.trim(),
+      );
+    } catch (exception) {
+      if (mounted) {
+        setState(() {
+          uploading = false;
+          error = exception.toString();
+        });
+      }
+      caption.dispose();
+      return;
+    }
     caption.dispose();
     if (mounted) {
       setState(() {
@@ -108,6 +120,16 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
       return ListView(
         padding: const EdgeInsets.all(StrotSpacing.lg),
         children: [
+          if (error != null)
+            Container(
+              padding: const EdgeInsets.all(StrotSpacing.md),
+              decoration: BoxDecoration(
+                border: Border.all(color: StrotColors.gold),
+                color: StrotColors.goldMuted,
+              ),
+              child: Text('◇ $error'),
+            ),
+          if (error != null) const SizedBox(height: StrotSpacing.lg),
           if (uploaded)
             Container(
               padding: const EdgeInsets.all(StrotSpacing.md),
@@ -153,20 +175,56 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
           const SizedBox(height: StrotSpacing.xl),
           ...snapshot.data!.map(
             (item) => Card(
-              child: ListTile(
-                contentPadding: const EdgeInsets.all(StrotSpacing.md),
-                leading: Icon(
-                  item.mimeType == 'application/pdf'
-                      ? Icons.description_outlined
-                      : Icons.image_outlined,
-                  color: StrotColors.gold,
+              child: Padding(
+                padding: const EdgeInsets.all(StrotSpacing.md),
+                child: Column(
+                  children: [
+                    ListTile(
+                      contentPadding: const EdgeInsets.all(StrotSpacing.md),
+                      leading: Icon(
+                        item.mimeType == 'application/pdf'
+                            ? Icons.description_outlined
+                            : Icons.image_outlined,
+                        color: StrotColors.gold,
+                      ),
+                      title: Text(item.name),
+                      subtitle: Text(
+                        '${item.caption}\n${_size(item.sizeBytes)} · ${item.uploader}',
+                      ),
+                      isThreeLine: true,
+                      trailing: _Status(status: item.processingStatus),
+                    ),
+                    LinearProgressIndicator(
+                      value: item.processingProgress / 100,
+                      backgroundColor: StrotColors.forestMuted,
+                      color: StrotColors.gold,
+                    ),
+                    const SizedBox(height: StrotSpacing.sm),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            item.processingMessage ??
+                                _processingLabel(item.processingStatus),
+                            style: const TextStyle(
+                              color: StrotColors.charcoalMuted,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                        if (item.processingStatus ==
+                            DocumentProcessingStatus.failed)
+                          TextButton(
+                            onPressed: () async {
+                              await widget.service.retry(item.id);
+                              if (mounted) setState(() {});
+                            },
+                            child: const Text('Retry'),
+                          ),
+                      ],
+                    ),
+                  ],
                 ),
-                title: Text(item.name),
-                subtitle: Text(
-                  '${item.caption}\n${_size(item.sizeBytes)} · ${item.uploader}',
-                ),
-                isThreeLine: true,
-                trailing: _Status(status: item.status),
               ),
             ),
           ),
@@ -177,11 +235,19 @@ class _DocumentsScreenState extends State<DocumentsScreen> {
   String _size(int bytes) => bytes < 1000000
       ? '${(bytes / 1000).round()} KB'
       : '${(bytes / 1000000).toStringAsFixed(1)} MB';
+  String _processingLabel(DocumentProcessingStatus status) => switch (status) {
+    DocumentProcessingStatus.queued => 'Queued securely',
+    DocumentProcessingStatus.scanning => 'Running integrity and safety checks',
+    DocumentProcessingStatus.extracting => 'Preparing preview and metadata',
+    DocumentProcessingStatus.ready => 'Ready for accountable review',
+    DocumentProcessingStatus.failed => 'Processing failed',
+    DocumentProcessingStatus.quarantined => 'Held after integrity check',
+  };
 }
 
 class _Status extends StatelessWidget {
   const _Status({required this.status});
-  final DocumentStatus status;
+  final DocumentProcessingStatus status;
   @override
   Widget build(BuildContext context) => Container(
     padding: const EdgeInsets.symmetric(

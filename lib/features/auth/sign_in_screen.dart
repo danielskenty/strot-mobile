@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/auth/auth_service.dart';
+import '../../core/auth/auth_models.dart';
 import '../../design_system/strot_tokens.dart';
 import '../portal/portal_shell.dart';
 
@@ -39,9 +40,83 @@ class _SignInScreenState extends State<SignInScreen> {
       );
     } on AuthException catch (exception) {
       if (mounted) setState(() => error = exception.message);
+    } on TwoFactorRequired catch (challenge) {
+      if (!mounted) return;
+      final session = await _verifySecondFactor(challenge.challengeToken);
+      if (session != null && mounted) {
+        await Navigator.of(context).pushReplacement(
+          MaterialPageRoute<void>(
+            builder: (_) => PortalShell(session: session),
+          ),
+        );
+      }
     } finally {
       if (mounted) setState(() => submitting = false);
     }
+  }
+
+  Future<AuthSession?> _verifySecondFactor(String challengeToken) async {
+    final code = TextEditingController();
+    String? challengeError;
+    final result = await showDialog<AuthSession>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, setDialogState) => AlertDialog(
+          title: const Text('Verify this sign-in'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Enter your six-digit authenticator code or one unused recovery code.',
+              ),
+              const SizedBox(height: StrotSpacing.md),
+              TextField(
+                controller: code,
+                autofocus: true,
+                keyboardType: TextInputType.number,
+                autofillHints: const [AutofillHints.oneTimeCode],
+                decoration: const InputDecoration(
+                  labelText: 'Authentication code',
+                ),
+              ),
+              if (challengeError != null) ...[
+                const SizedBox(height: StrotSpacing.sm),
+                Text(
+                  '◇ $challengeError',
+                  style: const TextStyle(color: StrotColors.forest),
+                ),
+              ],
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('Cancel'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                try {
+                  final session = await widget.authService.verifyTwoFactor(
+                    challengeToken: challengeToken,
+                    code: code.text.trim(),
+                  );
+                  if (dialogContext.mounted) {
+                    Navigator.pop(dialogContext, session);
+                  }
+                } on AuthException catch (exception) {
+                  setDialogState(() => challengeError = exception.message);
+                }
+              },
+              child: const Text('Verify'),
+            ),
+          ],
+        ),
+      ),
+    );
+    code.dispose();
+    return result;
   }
 
   @override

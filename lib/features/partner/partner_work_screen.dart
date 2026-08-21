@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 import '../../design_system/strot_tokens.dart';
+import '../../core/partner/partner_quotation_service.dart';
+import '../../core/partner/partner_assignment_service.dart';
+import 'partner_quotations_screen.dart';
+import 'partner_assignments_screen.dart';
 
 class PartnerWorkScreen extends StatefulWidget {
-  const PartnerWorkScreen({super.key});
+  const PartnerWorkScreen({
+    super.key,
+    required this.quotationService,
+    required this.assignmentService,
+  });
+  final PartnerQuotationService quotationService;
+  final PartnerAssignmentService assignmentService;
   @override
   State<PartnerWorkScreen> createState() => _PartnerWorkScreenState();
 }
@@ -42,6 +52,29 @@ class _PartnerWorkScreenState extends State<PartnerWorkScreen> {
       ),
       const SizedBox(height: StrotSpacing.md),
       Text('Assigned work', style: Theme.of(context).textTheme.displayMedium),
+      const SizedBox(height: StrotSpacing.md),
+      OutlinedButton.icon(
+        onPressed: () => Navigator.push<void>(
+          context,
+          MaterialPageRoute(
+            builder: (_) =>
+                PartnerQuotationsScreen(service: widget.quotationService),
+          ),
+        ),
+        icon: const Icon(Icons.request_quote_outlined),
+        label: const Text('Open quotation register'),
+      ),
+      OutlinedButton.icon(
+        onPressed: () => Navigator.push<void>(
+          context,
+          MaterialPageRoute(
+            builder: (_) =>
+                PartnerAssignmentsScreen(service: widget.assignmentService),
+          ),
+        ),
+        icon: const Icon(Icons.assignment_turned_in_outlined),
+        label: const Text('Review assignments'),
+      ),
       const SizedBox(height: StrotSpacing.xl),
       Card(
         child: Padding(

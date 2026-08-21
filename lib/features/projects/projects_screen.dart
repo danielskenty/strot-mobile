@@ -112,13 +112,13 @@ class ProjectOverviewScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Project timeline',
+                  'Delivery stages',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const Divider(height: StrotSpacing.xl),
                 ...project.milestones.map(
-                  (item) => ListTile(
-                    contentPadding: EdgeInsets.zero,
+                  (item) => ExpansionTile(
+                    tilePadding: EdgeInsets.zero,
                     leading: Icon(
                       item.status == 'complete'
                           ? Icons.check_circle
@@ -130,7 +130,35 @@ class ProjectOverviewScreen extends StatelessWidget {
                           : StrotColors.forest,
                     ),
                     title: Text(item.title),
-                    subtitle: Text(item.status),
+                    subtitle: Text(
+                      '${item.status} · ${item.completedRequirements}/${item.requirements.length} ready · ${item.ownerLabel ?? 'STROT team'}',
+                    ),
+                    children: [
+                      if (item.description != null)
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            bottom: StrotSpacing.sm,
+                          ),
+                          child: Text(item.description!),
+                        ),
+                      ...item.requirements.map(
+                        (requirement) => ListTile(
+                          dense: true,
+                          contentPadding: const EdgeInsets.only(
+                            left: StrotSpacing.md,
+                          ),
+                          leading: Icon(
+                            requirement.complete
+                                ? Icons.check
+                                : Icons.circle_outlined,
+                            color: requirement.complete
+                                ? StrotColors.forest
+                                : StrotColors.gold,
+                          ),
+                          title: Text(requirement.label),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -153,6 +181,34 @@ class ProjectOverviewScreen extends StatelessWidget {
                 Text(
                   '${project.summary.evidenceProgress}% reviewed',
                   style: const TextStyle(color: StrotColors.gold),
+                ),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(height: StrotSpacing.md),
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(StrotSpacing.lg),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Stage readiness'),
+                    Text(
+                      '${project.summary.milestoneProgress}%',
+                      style: const TextStyle(
+                        color: StrotColors.gold,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: StrotSpacing.sm),
+                LinearProgressIndicator(
+                  value: project.summary.milestoneProgress / 100,
                 ),
               ],
             ),

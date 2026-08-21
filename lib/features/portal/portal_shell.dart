@@ -8,10 +8,18 @@ import '../approvals/approvals_screen.dart';
 import '../../core/documents/document_service.dart';
 import '../documents/documents_screen.dart';
 import '../../core/payments/payment_service.dart';
+import '../../core/payments/payment_collection_service.dart';
+import '../../core/payments/payment_admin_service.dart';
 import '../payments/payments_screen.dart';
+import '../payments/payment_admin_screen.dart';
 import '../partner/partner_work_screen.dart';
+import '../../core/partner/partner_commercial_service.dart';
+import '../../core/partner/partner_quotation_service.dart';
+import '../../core/partner/partner_assignment_service.dart';
+import '../partner/partner_commercial_screen.dart';
 import '../provider/provider_operations_screen.dart';
 import '../admin/admin_overview_screen.dart';
+import '../admin/operations_queue_screen.dart';
 import '../../core/network/api_client.dart';
 import '../../core/notifications/notification_models.dart';
 import '../../core/notifications/notification_service.dart';
@@ -23,6 +31,24 @@ import '../../core/messages/message_service.dart';
 import '../messages/messages_screen.dart';
 import '../../core/security/security_service.dart';
 import '../security/security_screen.dart';
+import '../../core/access/access_service.dart';
+import '../access/access_admin_screen.dart';
+import '../../core/sync/sync_outbox.dart';
+import '../sync/sync_recovery_screen.dart';
+import '../../core/variations/variation_service.dart';
+import '../variations/variations_screen.dart';
+import '../../core/inspections/inspection_service.dart';
+import '../inspections/inspections_screen.dart';
+import '../../core/invoices/invoice_service.dart';
+import '../invoices/invoices_screen.dart';
+import '../../core/property_care/property_care_service.dart';
+import '../../core/provider/provider_service.dart';
+import '../../core/admin/admin_service.dart';
+import '../../core/aftercare/aftercare_service.dart';
+import '../aftercare/aftercare_screen.dart';
+import '../property_care/property_care_screen.dart';
+import '../../core/insurance/insurance_service.dart';
+import '../insurance/insurance_screen.dart';
 
 class PortalShell extends StatefulWidget {
   const PortalShell({super.key, required this.session});
@@ -48,6 +74,10 @@ class _PortalShellState extends State<PortalShell> {
       label: 'Approvals',
     ),
     NavigationDestination(
+      icon: Icon(Icons.change_circle_outlined),
+      label: 'Variations',
+    ),
+    NavigationDestination(
       icon: Icon(Icons.folder_outlined),
       label: 'Documents',
     ),
@@ -56,13 +86,33 @@ class _PortalShellState extends State<PortalShell> {
       label: 'Payments',
     ),
     NavigationDestination(
+      icon: Icon(Icons.receipt_long_outlined),
+      label: 'Invoices',
+    ),
+    NavigationDestination(
       icon: Icon(Icons.engineering_outlined),
       label: 'Operations',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.fact_check_outlined),
+      label: 'Inspections',
     ),
     NavigationDestination(icon: Icon(Icons.forum_outlined), label: 'Messages'),
     NavigationDestination(
       icon: Icon(Icons.notifications_outlined),
       label: 'Notifications',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.home_work_outlined),
+      label: 'Property care',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.inventory_2_outlined),
+      label: 'Aftercare',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.shield_outlined),
+      label: 'Insurance',
     ),
   ];
 
@@ -80,18 +130,49 @@ class _PortalShellState extends State<PortalShell> {
       baseUrl: ApiClient.defaultBaseUrl,
       token: widget.session.token,
     );
+    final outbox = SyncOutbox(api, PreferenceSyncStore());
     final projects = useMocks ? MockProjectService() : ApiProjectService(api);
     final approvals = useMocks
         ? MockApprovalService()
         : ApiApprovalService(api);
+    final variations = useMocks
+        ? MockVariationService()
+        : ApiVariationService(api);
+    final inspections = useMocks
+        ? MockInspectionService()
+        : ApiInspectionService(api);
+    final invoices = useMocks ? MockInvoiceService() : ApiInvoiceService(api);
     final notifications = useMocks
         ? MockNotificationService()
         : ApiNotificationService(api);
     final operations = useMocks
         ? MockOperationService()
-        : ApiOperationService(api);
+        : ApiOperationService(api, outbox: outbox);
     final messages = useMocks ? MockMessageService() : ApiMessageService(api);
     final security = useMocks ? MockSecurityService() : ApiSecurityService(api);
+    final access = useMocks ? MockAccessService() : ApiAccessService(api);
+    final propertyCare = useMocks
+        ? MockPropertyCareService()
+        : ApiPropertyCareService(api);
+    final providerService = useMocks
+        ? MockProviderService()
+        : ApiProviderService(api);
+    final adminService = useMocks ? MockAdminService() : ApiAdminService(api);
+    final aftercare = useMocks
+        ? MockAftercareService()
+        : ApiAftercareService(api);
+    final partnerCommercial = useMocks
+        ? MockPartnerCommercialService()
+        : ApiPartnerCommercialService(api);
+    final partnerQuotations = useMocks
+        ? MockPartnerQuotationService()
+        : ApiPartnerQuotationService(api);
+    final partnerAssignments = useMocks
+        ? MockPartnerAssignmentService()
+        : ApiPartnerAssignmentService(api);
+    final insurance = useMocks
+        ? MockInsuranceService()
+        : ApiInsuranceService(api);
     final activeDestinations = admin
         ? const [
             NavigationDestination(
@@ -104,7 +185,11 @@ class _PortalShellState extends State<PortalShell> {
             ),
             NavigationDestination(
               icon: Icon(Icons.history_outlined),
-              label: 'Governance',
+              label: 'Finance',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.manage_accounts_outlined),
+              label: 'Access',
             ),
             NavigationDestination(
               icon: Icon(Icons.forum_outlined),
@@ -113,6 +198,10 @@ class _PortalShellState extends State<PortalShell> {
             NavigationDestination(
               icon: Icon(Icons.notifications_outlined),
               label: 'Notifications',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.home_work_outlined),
+              label: 'Property care',
             ),
           ]
         : provider
@@ -150,11 +239,15 @@ class _PortalShellState extends State<PortalShell> {
             ),
             NavigationDestination(
               icon: Icon(Icons.upload_file_outlined),
-              label: 'Evidence',
+              label: 'Deliverables',
             ),
             NavigationDestination(
               icon: Icon(Icons.engineering_outlined),
               label: 'Operations',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.fact_check_outlined),
+              label: 'Inspections',
             ),
             NavigationDestination(
               icon: Icon(Icons.forum_outlined),
@@ -164,10 +257,16 @@ class _PortalShellState extends State<PortalShell> {
               icon: Icon(Icons.notifications_outlined),
               label: 'Notifications',
             ),
+            NavigationDestination(
+              icon: Icon(Icons.home_work_outlined),
+              label: 'Maintenance',
+            ),
           ]
         : destinations;
     final content = admin
-        ? (selected == 4
+        ? (selected == 6
+              ? PropertyCareScreen(service: propertyCare, canRequest: true)
+              : selected == 5
               ? NotificationsScreen(
                   service: notifications,
                   onOpen: (item) => _openNotification(
@@ -180,9 +279,18 @@ class _PortalShellState extends State<PortalShell> {
                     messages,
                   ),
                 )
-              : selected == 3
+              : selected == 4
               ? MessagesScreen(service: messages, canManage: true)
-              : const AdminOverviewScreen())
+              : selected == 3
+              ? AccessAdminScreen(service: access)
+              : selected == 2
+              ? PaymentAdminScreen(
+                  service: ApiPaymentAdminService(api),
+                  api: api,
+                )
+              : selected == 1
+              ? OperationsQueueScreen(service: adminService)
+              : AdminOverviewScreen(service: adminService))
         : provider
         ? (selected == 4
               ? NotificationsScreen(
@@ -199,9 +307,15 @@ class _PortalShellState extends State<PortalShell> {
                 )
               : selected == 3
               ? MessagesScreen(service: messages, canManage: false)
-              : const ProviderOperationsScreen())
+              : ProviderOperationsScreen(service: providerService))
         : partner
-        ? (selected == 5
+        ? (selected == 7
+              ? PropertyCareScreen(
+                  service: propertyCare,
+                  canRequest: false,
+                  canWork: true,
+                )
+              : selected == 6
               ? NotificationsScreen(
                   service: notifications,
                   onOpen: (item) => _openNotification(
@@ -214,21 +328,43 @@ class _PortalShellState extends State<PortalShell> {
                     messages,
                   ),
                 )
-              : selected == 4
+              : selected == 5
               ? MessagesScreen(service: messages, canManage: false)
+              : selected == 4
+              ? InspectionsScreen(service: inspections)
               : selected == 3
               ? OperationsScreen(service: operations, canSubmit: true)
+              : selected == 2
+              ? PartnerCommercialScreen(service: partnerCommercial)
               : selected == 1
-              ? const PartnerWorkScreen()
+              ? PartnerWorkScreen(
+                  quotationService: partnerQuotations,
+                  assignmentService: partnerAssignments,
+                )
               : _Overview(session: widget.session))
         : switch (selected) {
             1 => ProjectsScreen(service: projects),
             2 => ApprovalsScreen(service: approvals),
-            3 => DocumentsScreen(service: MockDocumentService()),
-            4 => PaymentsScreen(service: MockPaymentService()),
-            5 => OperationsScreen(service: operations, canSubmit: false),
-            6 => MessagesScreen(service: messages, canManage: false),
-            7 => NotificationsScreen(
+            3 => VariationsScreen(service: variations),
+            4 => DocumentsScreen(
+              service: useMocks
+                  ? MockDocumentService()
+                  : ApiDocumentService(api),
+            ),
+            5 => PaymentsScreen(
+              service: useMocks ? MockPaymentService() : ApiPaymentService(api),
+            ),
+            6 => InvoicesScreen(
+              service: invoices,
+              paymentService: ApiPaymentCollectionService(api),
+            ),
+            7 => OperationsScreen(service: operations, canSubmit: false),
+            8 => InspectionsScreen(service: inspections),
+            9 => MessagesScreen(service: messages, canManage: false),
+            11 => PropertyCareScreen(service: propertyCare, canRequest: true),
+            12 => AftercareScreen(service: aftercare),
+            13 => InsuranceScreen(service: insurance),
+            10 => NotificationsScreen(
               service: notifications,
               onOpen: (item) => _openNotification(
                 item,
@@ -246,6 +382,15 @@ class _PortalShellState extends State<PortalShell> {
       appBar: AppBar(
         title: Text(widget.session.organization),
         actions: [
+          IconButton(
+            tooltip: 'Synchronisation status',
+            icon: const Icon(Icons.sync_outlined),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => SyncRecoveryScreen(outbox: outbox),
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: StrotSpacing.md),
             child: IconButton(

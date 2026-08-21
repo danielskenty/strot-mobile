@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/payments/payment_service.dart';
 import '../../design_system/strot_tokens.dart';
+import 'payment_receipt_screen.dart';
 
 class PaymentsScreen extends StatelessWidget {
   const PaymentsScreen({super.key, required this.service});
@@ -76,6 +77,16 @@ class PaymentsScreen extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
+                onTap: item.status == 'paid'
+                    ? () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => PaymentReceiptScreen(
+                            service: service,
+                            paymentId: item.id,
+                          ),
+                        ),
+                      )
+                    : null,
               ),
             ),
           ),

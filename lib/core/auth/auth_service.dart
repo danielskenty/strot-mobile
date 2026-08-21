@@ -3,6 +3,10 @@ import '../network/api_client.dart';
 
 abstract interface class AuthService {
   Future<AuthSession> signIn({required String email, required String password});
+  Future<AuthSession> verifyTwoFactor({
+    required String challengeToken,
+    required String code,
+  });
   Future<void> signOut();
 }
 
@@ -73,6 +77,14 @@ class MockAuthService implements AuthService {
 
   @override
   Future<void> signOut() async {}
+
+  @override
+  Future<AuthSession> verifyTwoFactor({
+    required String challengeToken,
+    required String code,
+  }) => throw const AuthException(
+    'Two-factor authentication is not enabled for demo accounts.',
+  );
 }
 
 class ApiAuthService implements AuthService {
@@ -91,21 +103,12 @@ class ApiAuthService implements AuthService {
         'device_name': 'strot-flutter',
       });
       final data = response['data'] as Map<String, dynamic>;
-      final organizations = data['organizations'] as List<dynamic>;
-      return AuthSession(
-        name: (data['user'] as Map<String, dynamic>)['name'] as String,
-        email: (data['user'] as Map<String, dynamic>)['email'] as String,
-        organization: organizations.isEmpty
-            ? 'STROT'
-            : (organizations.first as Map<String, dynamic>)['name'] as String,
-        roles: (data['roles'] as List<dynamic>)
-            .map((role) => _role(role as String))
-            .toList(),
-        permissions: (data['permissions'] as List<dynamic>)
-            .cast<String>()
-            .toSet(),
-        token: response['token'] as String,
-      );
+      if (data['two_factor_required'] == true) {
+        throw TwoFactorRequired(data['challenge_token'] as String);
+      }
+      return _session(response, data);
+    } on TwoFactorRequired {
+      rethrow;
     } on ApiException catch (exception) {
       throw AuthException(
         exception.statusCode == 422
@@ -113,6 +116,43 @@ class ApiAuthService implements AuthService {
             : exception.message,
       );
     }
+  }
+
+  @override
+  Future<AuthSession> verifyTwoFactor({
+    required String challengeToken,
+    required String code,
+  }) async {
+    try {
+      final response = await client.post('/auth/two-factor/challenge', {
+        'challenge_token': challengeToken,
+        'code': code,
+      });
+      return _session(response, response['data'] as Map<String, dynamic>);
+    } on ApiException catch (exception) {
+      throw AuthException(exception.message);
+    }
+  }
+
+  AuthSession _session(
+    Map<String, dynamic> response,
+    Map<String, dynamic> data,
+  ) {
+    final organizations = data['organizations'] as List<dynamic>;
+    return AuthSession(
+      name: (data['user'] as Map<String, dynamic>)['name'] as String,
+      email: (data['user'] as Map<String, dynamic>)['email'] as String,
+      organization: organizations.isEmpty
+          ? 'STROT'
+          : (organizations.first as Map<String, dynamic>)['name'] as String,
+      roles: (data['roles'] as List<dynamic>)
+          .map((role) => _role(role as String))
+          .toList(),
+      permissions: (data['permissions'] as List<dynamic>)
+          .cast<String>()
+          .toSet(),
+      token: response['token'] as String,
+    );
   }
 
   StrotRole _role(String role) => switch (role) {
@@ -129,4 +169,9 @@ class ApiAuthService implements AuthService {
 class AuthException implements Exception {
   const AuthException(this.message);
   final String message;
+}
+
+class TwoFactorRequired implements Exception {
+  const TwoFactorRequired(this.challengeToken);
+  final String challengeToken;
 }

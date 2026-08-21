@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class ApiClient {
@@ -19,8 +20,17 @@ class ApiClient {
     if (token != null) 'Authorization': 'Bearer $token',
   };
 
-  Future<Map<String, dynamic>> get(String path) async =>
-      _decode(await _http.get(Uri.parse('$baseUrl$path'), headers: _headers));
+  Future<Map<String, dynamic>> get(String path) async {
+    try {
+      return _decode(
+        await _http.get(Uri.parse('$baseUrl$path'), headers: _headers),
+      );
+    } on SocketException catch (_) {
+      throw const NetworkUnavailableException();
+    } on http.ClientException catch (_) {
+      throw const NetworkUnavailableException();
+    }
+  }
 
   Future<Map<String, dynamic>> post(
     String path,
@@ -59,6 +69,23 @@ class ApiClient {
     await _http.delete(Uri.parse('$baseUrl$path'), headers: _headers),
   );
 
+  Future<Map<String, dynamic>> mutate(
+    String method,
+    String path,
+    Map<String, dynamic> body,
+  ) async {
+    try {
+      final request = http.Request(method, Uri.parse('$baseUrl$path'))
+        ..headers.addAll({..._headers, 'Content-Type': 'application/json'})
+        ..body = jsonEncode(body);
+      return _decode(await http.Response.fromStream(await _http.send(request)));
+    } on SocketException catch (_) {
+      throw const NetworkUnavailableException();
+    } on http.ClientException catch (_) {
+      throw const NetworkUnavailableException();
+    }
+  }
+
   Map<String, dynamic> _decode(http.Response response) {
     final body = response.body.isEmpty
         ? <String, dynamic>{}
@@ -71,6 +98,12 @@ class ApiClient {
     }
     return body;
   }
+}
+
+class NetworkUnavailableException implements Exception {
+  const NetworkUnavailableException();
+  @override
+  String toString() => 'No network connection is currently available.';
 }
 
 class ApiException implements Exception {

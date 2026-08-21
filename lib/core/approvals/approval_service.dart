@@ -21,6 +21,24 @@ class MockApprovalService implements ApprovalService {
       projectName: 'Oak Residence',
       projectReference: 'STR-24001',
       dueAt: DateTime(2026, 8, 21),
+      currentStepLabel: 'Client authorization',
+      currentReviewerRole: 'client',
+      steps: const [
+        ApprovalStep(
+          sequence: 1,
+          label: 'STROT technical review',
+          reviewerRole: 'internal',
+          status: ApprovalStepStatus.approved,
+          reviewerName: 'Ifeoma Eze',
+          note: 'Scope and allowances verified.',
+        ),
+        ApprovalStep(
+          sequence: 2,
+          label: 'Client authorization',
+          reviewerRole: 'client',
+          status: ApprovalStepStatus.pending,
+        ),
+      ],
     ),
     StrotApproval(
       id: 2,
@@ -66,6 +84,24 @@ class ApiApprovalService implements ApprovalService {
             ? DateTime.now()
             : DateTime.parse(value['due_at'] as String),
         status: _status(value['status'] as String),
+        currentStepLabel:
+            (value['current_step'] as Map<String, dynamic>?)?['label']
+                as String?,
+        currentReviewerRole:
+            (value['current_step'] as Map<String, dynamic>?)?['reviewer_role']
+                as String?,
+        steps: (value['steps'] as List<dynamic>? ?? const []).map((raw) {
+          final step = raw as Map<String, dynamic>;
+          final reviewer = step['reviewer'] as Map<String, dynamic>?;
+          return ApprovalStep(
+            sequence: step['sequence'] as int,
+            label: step['label'] as String,
+            reviewerRole: step['reviewer_role'] as String,
+            status: _stepStatus(step['status'] as String),
+            reviewerName: reviewer?['name'] as String?,
+            note: step['decision_note'] as String?,
+          );
+        }).toList(),
       );
     }).toList();
   }
@@ -88,5 +124,12 @@ class ApiApprovalService implements ApprovalService {
     'approved' => ApprovalStatus.approved,
     'changes_requested' => ApprovalStatus.changesRequested,
     _ => ApprovalStatus.pending,
+  };
+
+  ApprovalStepStatus _stepStatus(String value) => switch (value) {
+    'approved' => ApprovalStepStatus.approved,
+    'changes_requested' => ApprovalStepStatus.changesRequested,
+    'pending' => ApprovalStepStatus.pending,
+    _ => ApprovalStepStatus.waiting,
   };
 }
