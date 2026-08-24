@@ -16,7 +16,10 @@ class OperationsScreen extends StatefulWidget {
 }
 
 class _OperationsScreenState extends State<OperationsScreen> {
-  late Future<(List<ProjectTask>, List<DailySiteReport>)> future;
+  late Future<
+    (List<ProjectTask>, List<DailySiteReport>, List<OperationProject>)
+  >
+  future;
   @override
   void initState() {
     super.initState();
@@ -24,11 +27,19 @@ class _OperationsScreenState extends State<OperationsScreen> {
   }
 
   void refresh() {
-    future = Future.wait([widget.service.tasks(), widget.service.reports()])
-        .then(
+    future =
+        Future.wait([
+          widget.service.tasks(),
+          widget.service.reports(),
+          if (widget.canSubmit)
+            widget.service.reportProjects()
+          else
+            Future.value(<OperationProject>[]),
+        ]).then(
           (items) => (
             items[0] as List<ProjectTask>,
             items[1] as List<DailySiteReport>,
+            items[2] as List<OperationProject>,
           ),
         );
   }
@@ -43,7 +54,7 @@ class _OperationsScreenState extends State<OperationsScreen> {
       if (!snapshot.hasData) {
         return const Center(child: CircularProgressIndicator());
       }
-      final (tasks, reports) = snapshot.data!;
+      final (tasks, reports, reportProjects) = snapshot.data!;
       return DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -58,7 +69,9 @@ class _OperationsScreenState extends State<OperationsScreen> {
           ),
           floatingActionButton: widget.canSubmit
               ? FloatingActionButton.extended(
-                  onPressed: () => _submit(context),
+                  onPressed: reportProjects.isEmpty
+                      ? null
+                      : () => _submit(context, reportProjects),
                   icon: const Icon(Icons.add),
                   label: const Text('Site report'),
                 )
@@ -152,53 +165,82 @@ class _OperationsScreenState extends State<OperationsScreen> {
       ),
     ],
   );
-  Future<void> _submit(BuildContext context) async {
+  Future<void> _submit(
+    BuildContext context,
+    List<OperationProject> projects,
+  ) async {
     final completed = TextEditingController(),
         workers = TextEditingController(),
         weather = TextEditingController();
+    int? projectId;
     final submit = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Submit today’s report'),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: weather,
-                decoration: const InputDecoration(labelText: 'Weather'),
-              ),
-              const SizedBox(height: StrotSpacing.md),
-              TextField(
-                controller: workers,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Workers on site'),
-              ),
-              const SizedBox(height: StrotSpacing.md),
-              TextField(
-                controller: completed,
-                maxLines: 4,
-                decoration: const InputDecoration(labelText: 'Work completed'),
-              ),
-            ],
+      builder: (context) => StatefulBuilder(
+        builder: (context, setDialogState) => AlertDialog(
+          title: const Text('Submit today’s report'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DropdownButtonFormField<int>(
+                  key: const Key('site-report-project-select'),
+                  initialValue: projectId,
+                  decoration: const InputDecoration(labelText: 'Project'),
+                  items: projects
+                      .map(
+                        (project) => DropdownMenuItem(
+                          value: project.id,
+                          child: Text('${project.name} · ${project.reference}'),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) => setDialogState(() => projectId = value),
+                ),
+                const SizedBox(height: StrotSpacing.md),
+                TextField(
+                  controller: weather,
+                  decoration: const InputDecoration(labelText: 'Weather'),
+                ),
+                const SizedBox(height: StrotSpacing.md),
+                TextField(
+                  controller: workers,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    labelText: 'Workers on site',
+                  ),
+                ),
+                const SizedBox(height: StrotSpacing.md),
+                TextField(
+                  controller: completed,
+                  maxLines: 4,
+                  decoration: const InputDecoration(
+                    labelText: 'Work completed',
+                  ),
+                ),
+              ],
+            ),
           ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: projectId == null
+                  ? null
+                  : () => Navigator.pop(context, true),
+              child: const Text('Submit'),
+            ),
+          ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('Submit'),
-          ),
-        ],
       ),
     );
-    if (submit == true && completed.text.trim().isNotEmpty) {
+    if (submit == true &&
+        projectId != null &&
+        completed.text.trim().isNotEmpty) {
       await widget.service.submit(
         NewSiteReport(
-          projectId: 1,
+          projectId: projectId!,
           reportDate: DateTime.now(),
           workersOnSite: int.tryParse(workers.text) ?? 0,
           workCompleted: completed.text,

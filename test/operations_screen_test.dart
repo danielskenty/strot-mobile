@@ -31,4 +31,38 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Two lintels remain outstanding.'), findsOneWidget);
   });
+
+  testWidgets('submits a site report against the selected project', (
+    tester,
+  ) async {
+    final service = MockOperationService();
+    await tester.pumpWidget(
+      MaterialApp(home: OperationsScreen(service: service, canSubmit: true)),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Site report'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('site-report-project-select')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Oak Residence · STR-24001').last);
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Work completed'),
+      'Reinforcement inspection completed.',
+    );
+    await tester.enterText(
+      find.widgetWithText(TextField, 'Workers on site'),
+      '12',
+    );
+    await tester.tap(find.widgetWithText(FilledButton, 'Submit'));
+    await tester.pumpAndSettle();
+
+    expect(service.lastSubmitted?.projectId, 71);
+    expect(service.lastSubmitted?.workersOnSite, 12);
+    expect(
+      service.lastSubmitted?.workCompleted,
+      'Reinforcement inspection completed.',
+    );
+  });
 }

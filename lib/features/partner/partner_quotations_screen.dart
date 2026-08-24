@@ -2,20 +2,49 @@ import 'package:flutter/material.dart';
 import '../../core/partner/partner_quotation_service.dart';
 import '../../design_system/strot_tokens.dart';
 
-class PartnerQuotationsScreen extends StatelessWidget {
-  const PartnerQuotationsScreen({super.key, required this.service});
+class PartnerQuotationsScreen extends StatefulWidget {
+  const PartnerQuotationsScreen({
+    super.key,
+    required this.service,
+    this.initialId,
+  });
   final PartnerQuotationService service;
+  final int? initialId;
+
+  @override
+  State<PartnerQuotationsScreen> createState() =>
+      _PartnerQuotationsScreenState();
+}
+
+class _PartnerQuotationsScreenState extends State<PartnerQuotationsScreen> {
+  bool openedInitial = false;
 
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: const Text('Quotation register')),
     body: FutureBuilder<List<PartnerQuotationRecord>>(
-      future: service.list(),
+      future: widget.service.list(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
         }
         final records = snapshot.data!;
+        if (!openedInitial && widget.initialId != null) {
+          openedInitial = true;
+          final matches = records.where((item) => item.id == widget.initialId);
+          if (matches.isNotEmpty) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (mounted) {
+                Navigator.push<void>(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => _QuotationDetail(record: matches.first),
+                  ),
+                );
+              }
+            });
+          }
+        }
         return ListView(
           padding: const EdgeInsets.all(StrotSpacing.lg),
           children: [

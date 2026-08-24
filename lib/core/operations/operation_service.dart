@@ -3,6 +3,7 @@ import 'operation_models.dart';
 import '../sync/sync_outbox.dart';
 
 abstract interface class OperationService {
+  Future<List<OperationProject>> reportProjects();
   Future<List<ProjectTask>> tasks();
   Future<ProjectTask> task(int id);
   Future<ProjectTask> updateTask(int id, String status);
@@ -17,6 +18,14 @@ class ApiOperationService implements OperationService {
   final ApiClient client;
   final SyncOutbox outbox;
   final Map<int, ProjectTask> _taskCache = {};
+  @override
+  Future<List<OperationProject>> reportProjects() async =>
+      ((await client.get('/site-reports/project-options'))['data'] as List)
+          .map(
+            (item) => OperationProject.fromJson(item as Map<String, dynamic>),
+          )
+          .toList();
+
   @override
   Future<List<ProjectTask>> tasks() async {
     final values = ((await client.get('/tasks'))['data'] as List)
@@ -99,8 +108,8 @@ class ApiOperationService implements OperationService {
       workPlanned: report.workPlanned,
       blockers: report.blockers,
       status: 'queued',
-      project: const OperationProject(
-        id: 1,
+      project: OperationProject(
+        id: report.projectId,
         name: 'Pending synchronisation',
         reference: 'OFFLINE',
       ),
@@ -110,6 +119,7 @@ class ApiOperationService implements OperationService {
 }
 
 class MockOperationService implements OperationService {
+  NewSiteReport? lastSubmitted;
   ProjectTask sampleTask = ProjectTask(
     id: 1,
     title: 'Inspect first-floor columns',
@@ -119,7 +129,7 @@ class MockOperationService implements OperationService {
     status: 'assigned',
     dueAt: DateTime(2026, 8, 18, 15),
     project: const OperationProject(
-      id: 1,
+      id: 71,
       name: 'Oak Residence',
       reference: 'STR-24001',
     ),
@@ -135,12 +145,14 @@ class MockOperationService implements OperationService {
     blockers: 'Two lintels remain outstanding.',
     status: 'submitted',
     project: const OperationProject(
-      id: 1,
+      id: 71,
       name: 'Oak Residence',
       reference: 'STR-24001',
     ),
     submittedBy: 'Tunde Afolayan',
   );
+  @override
+  Future<List<OperationProject>> reportProjects() async => [sampleTask.project];
   @override
   Future<List<ProjectTask>> tasks() async => [sampleTask];
   @override
@@ -165,5 +177,8 @@ class MockOperationService implements OperationService {
   @override
   Future<DailySiteReport> report(int id) async => sampleReport;
   @override
-  Future<DailySiteReport> submit(NewSiteReport report) async => sampleReport;
+  Future<DailySiteReport> submit(NewSiteReport report) async {
+    lastSubmitted = report;
+    return sampleReport;
+  }
 }

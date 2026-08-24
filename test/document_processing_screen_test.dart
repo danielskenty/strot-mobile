@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:strot_app/core/documents/document_service.dart';
+import 'package:strot_app/core/projects/project_service.dart';
 import 'package:strot_app/design_system/strot_theme.dart';
 import 'package:strot_app/features/documents/documents_screen.dart';
 
@@ -11,7 +12,12 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         theme: StrotTheme.light,
-        home: DocumentsScreen(service: MockDocumentService()),
+        home: Scaffold(
+          body: DocumentsScreen(
+            service: MockDocumentService(),
+            projectService: MockProjectService(),
+          ),
+        ),
       ),
     );
     await tester.pumpAndSettle();

@@ -10,8 +10,10 @@ import '../documents/documents_screen.dart';
 import '../../core/payments/payment_service.dart';
 import '../../core/payments/payment_collection_service.dart';
 import '../../core/payments/payment_admin_service.dart';
+import '../../core/payments/bank_account_service.dart';
 import '../payments/payments_screen.dart';
 import '../payments/payment_admin_screen.dart';
+import '../payments/bank_accounts_screen.dart';
 import '../partner/partner_work_screen.dart';
 import '../../core/partner/partner_commercial_service.dart';
 import '../../core/partner/partner_quotation_service.dart';
@@ -20,6 +22,25 @@ import '../partner/partner_commercial_screen.dart';
 import '../provider/provider_operations_screen.dart';
 import '../admin/admin_overview_screen.dart';
 import '../admin/operations_queue_screen.dart';
+import '../admin/organizations_screen.dart';
+import '../admin/users_screen.dart';
+import '../admin/roles_screen.dart';
+import '../admin/projects_screen.dart';
+import '../admin/partner_deliverables_screen.dart';
+import '../../core/admin/work_order_admin_service.dart';
+import '../admin/work_order_admin_screen.dart';
+import '../../core/admin/provider_dispatch_service.dart';
+import '../admin/provider_dispatch_screen.dart';
+import '../../core/admin/provider_integration_admin_service.dart';
+import '../admin/provider_integrations_admin_screen.dart';
+import '../../core/profile/profile_service.dart';
+import '../../core/dashboard/client_overview_service.dart';
+import '../../core/dashboard/partner_overview_service.dart';
+import '../partner/partner_assignments_screen.dart';
+import '../partner/partner_quotations_screen.dart';
+import '../profile/profile_screen.dart';
+import '../../core/profile/organization_profile_service.dart';
+import '../profile/organization_profile_screen.dart';
 import '../../core/network/api_client.dart';
 import '../../core/notifications/notification_models.dart';
 import '../../core/notifications/notification_service.dart';
@@ -42,13 +63,36 @@ import '../inspections/inspections_screen.dart';
 import '../../core/invoices/invoice_service.dart';
 import '../invoices/invoices_screen.dart';
 import '../../core/property_care/property_care_service.dart';
+import '../../core/property_assets/property_asset_service.dart';
+import '../../core/care_plans/care_plan_service.dart';
+import '../../core/properties/property_service.dart';
 import '../../core/provider/provider_service.dart';
 import '../../core/admin/admin_service.dart';
+import '../../core/admin/organization_service.dart';
+import '../../core/admin/user_directory_service.dart';
+import '../../core/admin/role_service.dart';
+import '../../core/admin/project_directory_service.dart';
 import '../../core/aftercare/aftercare_service.dart';
 import '../aftercare/aftercare_screen.dart';
 import '../property_care/property_care_screen.dart';
 import '../../core/insurance/insurance_service.dart';
 import '../insurance/insurance_screen.dart';
+import '../../core/consultations/consultation_service.dart';
+import '../consultations/consultations_screen.dart';
+import '../../core/issues/issue_service.dart';
+import '../issues/issues_screen.dart';
+import '../../core/project_journal/project_journal_service.dart';
+import '../project_journal/project_journal_screen.dart';
+import '../../core/smart_property/smart_property_service.dart';
+import '../smart_property/smart_property_screen.dart';
+import '../../core/property_access/property_access_service.dart';
+import '../property_access/property_access_screen.dart';
+import '../../core/billing/billing_profile_service.dart';
+import '../billing/billing_profiles_screen.dart';
+import '../../core/team/team_service.dart';
+import '../team/team_screen.dart';
+import '../../core/partner/partner_payout_profile_service.dart';
+import '../partner/partner_payout_settings_screen.dart';
 
 class PortalShell extends StatefulWidget {
   const PortalShell({super.key, required this.session});
@@ -114,6 +158,30 @@ class _PortalShellState extends State<PortalShell> {
       icon: Icon(Icons.shield_outlined),
       label: 'Insurance',
     ),
+    NavigationDestination(
+      icon: Icon(Icons.event_available_outlined),
+      label: 'Consultations',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.report_problem_outlined),
+      label: 'Issues & RFIs',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.auto_stories_outlined),
+      label: 'Project journal',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.sensors_outlined),
+      label: 'Smart home',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.group_outlined),
+      label: 'Household & access',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.account_balance_wallet_outlined),
+      label: 'Billing details',
+    ),
   ];
 
   @override
@@ -150,14 +218,48 @@ class _PortalShellState extends State<PortalShell> {
         : ApiOperationService(api, outbox: outbox);
     final messages = useMocks ? MockMessageService() : ApiMessageService(api);
     final security = useMocks ? MockSecurityService() : ApiSecurityService(api);
+    final profile = useMocks ? MockProfileService() : ApiProfileService(api);
+    final clientOverview = useMocks
+        ? MockClientOverviewService()
+        : ApiClientOverviewService(api);
+    final partnerOverview = useMocks
+        ? MockPartnerOverviewService()
+        : ApiPartnerOverviewService(api);
+    final organizationProfile = useMocks
+        ? MockOrganizationProfileService()
+        : ApiOrganizationProfileService(api);
     final access = useMocks ? MockAccessService() : ApiAccessService(api);
     final propertyCare = useMocks
         ? MockPropertyCareService()
         : ApiPropertyCareService(api);
+    final propertyAssets = useMocks
+        ? MockPropertyAssetService()
+        : ApiPropertyAssetService(api);
+    final carePlans = useMocks
+        ? MockCarePlanService()
+        : ApiCarePlanService(api);
+    final properties = useMocks
+        ? MockPropertyService()
+        : ApiPropertyService(api);
     final providerService = useMocks
         ? MockProviderService()
         : ApiProviderService(api);
     final adminService = useMocks ? MockAdminService() : ApiAdminService(api);
+    final organizationService = useMocks
+        ? MockAdminOrganizationService()
+        : ApiAdminOrganizationService(api);
+    final userDirectoryService = useMocks
+        ? MockAdminUserDirectoryService()
+        : ApiAdminUserDirectoryService(api);
+    final roleService = useMocks
+        ? MockAdminRoleService()
+        : ApiAdminRoleService(api);
+    final adminProjects = useMocks
+        ? MockAdminProjectDirectoryService()
+        : ApiAdminProjectDirectoryService(api);
+    final bankAccounts = useMocks
+        ? MockBankAccountService()
+        : ApiBankAccountService(api);
     final aftercare = useMocks
         ? MockAftercareService()
         : ApiAftercareService(api);
@@ -173,6 +275,26 @@ class _PortalShellState extends State<PortalShell> {
     final insurance = useMocks
         ? MockInsuranceService()
         : ApiInsuranceService(api);
+    final consultations = useMocks
+        ? MockConsultationService()
+        : ApiConsultationService(api);
+    final issues = useMocks ? MockIssueService() : ApiIssueService(api);
+    final projectJournal = useMocks
+        ? MockProjectJournalService()
+        : ApiProjectJournalService(api);
+    final smartProperties = useMocks
+        ? MockSmartPropertyService()
+        : ApiSmartPropertyService(api);
+    final propertyAccess = useMocks
+        ? MockPropertyAccessService()
+        : ApiPropertyAccessService(api);
+    final billingProfiles = useMocks
+        ? MockBillingProfileService()
+        : ApiBillingProfileService(api);
+    final team = useMocks ? MockTeamService() : ApiTeamService(api);
+    final partnerPayoutProfile = useMocks
+        ? MockPartnerPayoutProfileService()
+        : ApiPartnerPayoutProfileService(api);
     final activeDestinations = admin
         ? const [
             NavigationDestination(
@@ -202,6 +324,62 @@ class _PortalShellState extends State<PortalShell> {
             NavigationDestination(
               icon: Icon(Icons.home_work_outlined),
               label: 'Property care',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.business_outlined),
+              label: 'Organizations',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.people_outline),
+              label: 'Users',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.policy_outlined),
+              label: 'Roles',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.domain_outlined),
+              label: 'Projects',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.account_balance_outlined),
+              label: 'Bank accounts',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.shield_outlined),
+              label: 'Insurance',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.inventory_2_outlined),
+              label: 'Aftercare',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.fact_check_outlined),
+              label: 'Document review',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.payments_outlined),
+              label: 'Partner payouts',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.inventory_outlined),
+              label: 'Partner evidence',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.assignment_outlined),
+              label: 'Work orders',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.api_outlined),
+              label: 'Provider dispatch',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.hub_outlined),
+              label: 'Integrations',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.report_problem_outlined),
+              label: 'Issues & RFIs',
             ),
           ]
         : provider
@@ -261,11 +439,79 @@ class _PortalShellState extends State<PortalShell> {
               icon: Icon(Icons.home_work_outlined),
               label: 'Maintenance',
             ),
+            NavigationDestination(
+              icon: Icon(Icons.groups_outlined),
+              label: 'Team & roles',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.account_balance_outlined),
+              label: 'Payout settings',
+            ),
           ]
         : destinations;
     final content = admin
-        ? (selected == 6
-              ? PropertyCareScreen(service: propertyCare, canRequest: true)
+        ? (selected == 20
+              ? IssuesScreen(
+                  service: issues,
+                  projectService: projects,
+                  canManage: true,
+                  canCreate: false,
+                )
+              : selected == 19
+              ? ProviderIntegrationsAdminScreen(
+                  service: useMocks
+                      ? MockProviderIntegrationAdminService()
+                      : ApiProviderIntegrationAdminService(api),
+                )
+              : selected == 18
+              ? ProviderDispatchScreen(
+                  service: useMocks
+                      ? MockProviderDispatchService()
+                      : ApiProviderDispatchService(api),
+                )
+              : selected == 17
+              ? WorkOrderAdminScreen(
+                  service: useMocks
+                      ? MockWorkOrderAdminService()
+                      : ApiWorkOrderAdminService(api),
+                )
+              : selected == 16
+              ? PartnerDeliverablesScreen(service: partnerCommercial)
+              : selected == 15
+              ? PartnerCommercialScreen(
+                  service: partnerCommercial,
+                  financeMode: true,
+                )
+              : selected == 14
+              ? DocumentsScreen(
+                  service: useMocks
+                      ? MockDocumentService()
+                      : ApiDocumentService(api),
+                  projectService: projects,
+                  reviewMode: true,
+                )
+              : selected == 13
+              ? AftercareScreen(service: aftercare)
+              : selected == 12
+              ? InsuranceScreen(service: insurance)
+              : selected == 11
+              ? BankAccountsScreen(service: bankAccounts)
+              : selected == 10
+              ? AdminProjectsScreen(service: adminProjects)
+              : selected == 9
+              ? RolesScreen(service: roleService)
+              : selected == 8
+              ? UsersScreen(service: userDirectoryService)
+              : selected == 7
+              ? OrganizationsScreen(service: organizationService)
+              : selected == 6
+              ? PropertyCareScreen(
+                  service: propertyCare,
+                  assetService: propertyAssets,
+                  planService: carePlans,
+                  propertyService: properties,
+                  canRequest: true,
+                )
               : selected == 5
               ? NotificationsScreen(
                   service: notifications,
@@ -309,9 +555,19 @@ class _PortalShellState extends State<PortalShell> {
               ? MessagesScreen(service: messages, canManage: false)
               : ProviderOperationsScreen(service: providerService))
         : partner
-        ? (selected == 7
+        ? (selected == 9
+              ? PartnerPayoutSettingsScreen(
+                  service: partnerPayoutProfile,
+                  organizationService: organizationProfile,
+                )
+              : selected == 8
+              ? TeamScreen(service: team)
+              : selected == 7
               ? PropertyCareScreen(
                   service: propertyCare,
+                  assetService: propertyAssets,
+                  planService: carePlans,
+                  propertyService: properties,
                   canRequest: false,
                   canWork: true,
                 )
@@ -341,7 +597,34 @@ class _PortalShellState extends State<PortalShell> {
                   quotationService: partnerQuotations,
                   assignmentService: partnerAssignments,
                 )
-              : _Overview(session: widget.session))
+              : _PartnerOverview(
+                  service: partnerOverview,
+                  onOpen: (action) {
+                    final id = int.tryParse(
+                      action.category == 'deliverable'
+                          ? action.id.split('-').last
+                          : action.deepLink.split('/').last,
+                    );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => action.category == 'assignment'
+                            ? PartnerAssignmentsScreen(
+                                service: partnerAssignments,
+                                initialId: id,
+                              )
+                            : action.category == 'quotation'
+                            ? PartnerQuotationsScreen(
+                                service: partnerQuotations,
+                                initialId: id,
+                              )
+                            : PartnerCommercialScreen(
+                                service: partnerCommercial,
+                                initialDeliverableId: id,
+                              ),
+                      ),
+                    );
+                  },
+                ))
         : switch (selected) {
             1 => ProjectsScreen(service: projects),
             2 => ApprovalsScreen(service: approvals),
@@ -350,6 +633,7 @@ class _PortalShellState extends State<PortalShell> {
               service: useMocks
                   ? MockDocumentService()
                   : ApiDocumentService(api),
+              projectService: projects,
             ),
             5 => PaymentsScreen(
               service: useMocks ? MockPaymentService() : ApiPaymentService(api),
@@ -361,9 +645,54 @@ class _PortalShellState extends State<PortalShell> {
             7 => OperationsScreen(service: operations, canSubmit: false),
             8 => InspectionsScreen(service: inspections),
             9 => MessagesScreen(service: messages, canManage: false),
-            11 => PropertyCareScreen(service: propertyCare, canRequest: true),
+            11 => PropertyCareScreen(
+              service: propertyCare,
+              assetService: propertyAssets,
+              planService: carePlans,
+              propertyService: properties,
+              canRequest: true,
+            ),
             12 => AftercareScreen(service: aftercare),
             13 => InsuranceScreen(service: insurance),
+            14 => ConsultationsScreen(service: consultations),
+            15 => IssuesScreen(
+              service: issues,
+              projectService: projects,
+              canManage: false,
+              canCreate: true,
+            ),
+            16 => ProjectJournalScreen(
+              service: projectJournal,
+              onOpen: (deepLink) => _openNotification(
+                StrotNotification(
+                  id: deepLink,
+                  category: 'project_journal',
+                  priority: 'informational',
+                  title: 'Project journal record',
+                  body: 'Open the exact certified project record.',
+                  actionUrl: deepLink,
+                  actionRequired: false,
+                  readAt: DateTime.now(),
+                  resolvedAt: null,
+                  createdAt: DateTime.now(),
+                ),
+                projects,
+                approvals,
+                api,
+                useMocks,
+                operations,
+                messages,
+              ),
+            ),
+            17 => SmartPropertiesScreen(service: smartProperties),
+            18 => PropertyAccessScreen(
+              service: propertyAccess,
+              propertyService: properties,
+            ),
+            19 => BillingProfilesScreen(
+              service: billingProfiles,
+              organizationService: organizationProfile,
+            ),
             10 => NotificationsScreen(
               service: notifications,
               onOpen: (item) => _openNotification(
@@ -376,12 +705,54 @@ class _PortalShellState extends State<PortalShell> {
                 messages,
               ),
             ),
-            _ => _Overview(session: widget.session),
+            _ => _Overview(
+              session: widget.session,
+              service: clientOverview,
+              onOpen: (action) => _openNotification(
+                StrotNotification(
+                  id: action.id,
+                  category: action.category,
+                  priority: action.priority,
+                  title: action.title,
+                  body: action.context,
+                  actionUrl: action.deepLink,
+                  actionRequired: true,
+                  readAt: null,
+                  resolvedAt: null,
+                  createdAt: DateTime.now(),
+                ),
+                projects,
+                approvals,
+                api,
+                useMocks,
+                operations,
+                messages,
+              ),
+            ),
           };
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.session.organization),
         actions: [
+          IconButton(
+            tooltip: 'Organization details',
+            icon: const Icon(Icons.business_outlined),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) =>
+                    OrganizationProfileScreen(service: organizationProfile),
+              ),
+            ),
+          ),
+          IconButton(
+            tooltip: 'Profile and contact details',
+            icon: const Icon(Icons.person_outline),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => ProfileScreen(service: profile),
+              ),
+            ),
+          ),
           IconButton(
             tooltip: 'Synchronisation status',
             icon: const Icon(Icons.sync_outlined),
@@ -491,14 +862,16 @@ class _PortalShellState extends State<PortalShell> {
       }
     }
     if (segments.length >= 3 &&
-        (segments[1] == 'payments' || segments[1] == 'documents')) {
+        (segments[1] == 'payments' ||
+            segments[1] == 'documents' ||
+            segments[1] == 'evidence')) {
       final id = int.tryParse(segments[2]);
       if (id != null && mounted) {
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
             builder: (_) => LinkedNotificationItemScreen(
               client: api,
-              kind: segments[1],
+              kind: segments[1] == 'evidence' ? 'documents' : segments[1],
               id: id,
               useMocks: useMocks,
             ),
@@ -525,6 +898,39 @@ class _PortalShellState extends State<PortalShell> {
           MaterialPageRoute<void>(
             builder: (_) =>
                 SiteReportDetailScreen(reportId: id, service: operations),
+          ),
+        );
+        return;
+      }
+    }
+    if (segments.length >= 3 && segments[1] == 'consultations') {
+      final id = int.tryParse(segments[2]);
+      if (id != null && mounted) {
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => ConsultationsScreen(
+              service: useMocks
+                  ? MockConsultationService()
+                  : ApiConsultationService(api),
+              initialId: id,
+            ),
+          ),
+        );
+        return;
+      }
+    }
+    if (segments.length >= 3 && segments[1] == 'issues') {
+      final id = int.tryParse(segments[2]);
+      if (id != null && mounted) {
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => IssuesScreen(
+              service: useMocks ? MockIssueService() : ApiIssueService(api),
+              projectService: projects,
+              canManage: widget.session.roles.contains(StrotRole.superAdmin),
+              canCreate: false,
+              initialId: id,
+            ),
           ),
         );
         return;
@@ -564,67 +970,189 @@ class _PortalShellState extends State<PortalShell> {
 }
 
 class _Overview extends StatelessWidget {
-  const _Overview({required this.session});
+  const _Overview({required this.session, required this.service, this.onOpen});
   final AuthSession session;
+  final ClientOverviewService service;
+  final ValueChanged<ClientOverviewAction>? onOpen;
   @override
-  Widget build(BuildContext context) => ListView(
-    padding: const EdgeInsets.all(StrotSpacing.lg),
-    children: [
-      const Text(
-        'MONDAY, 17 AUGUST',
-        style: TextStyle(
-          color: StrotColors.gold,
-          fontWeight: FontWeight.w700,
-          letterSpacing: 2,
-        ),
-      ),
-      const SizedBox(height: StrotSpacing.md),
-      Text(
-        'Good morning, ${session.name.split(' ').first}.',
-        style: Theme.of(context).textTheme.displayMedium,
-      ),
-      const SizedBox(height: StrotSpacing.sm),
-      const Text('Here is what needs your attention across Oak Residence.'),
-      const SizedBox(height: StrotSpacing.xl),
-      Wrap(
-        spacing: StrotSpacing.md,
-        runSpacing: StrotSpacing.md,
-        children: const [
-          _Metric(label: 'Active projects', value: '01'),
-          _Metric(label: 'Pending decisions', value: '02'),
-          _Metric(label: 'Verified evidence', value: '68%'),
-        ],
-      ),
-      const SizedBox(height: StrotSpacing.xl),
-      Card(
-        child: Padding(
-          padding: const EdgeInsets.all(StrotSpacing.lg),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+  Widget build(BuildContext context) => FutureBuilder<ClientOverviewRecord>(
+    future: service.load(),
+    builder: (context, snapshot) {
+      if (!snapshot.hasData) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      final data = snapshot.requireData;
+      return ListView(
+        padding: const EdgeInsets.all(StrotSpacing.lg),
+        children: [
+          const Text(
+            'CLIENT WORKSPACE',
+            style: TextStyle(
+              color: StrotColors.gold,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 2,
+            ),
+          ),
+          const SizedBox(height: StrotSpacing.md),
+          Text(
+            'Good day, ${session.name.split(' ').first}.',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const SizedBox(height: StrotSpacing.sm),
+          const Text(
+            'Live delivery, decision and finance actions across your projects.',
+          ),
+          const SizedBox(height: StrotSpacing.xl),
+          Wrap(
+            spacing: StrotSpacing.md,
+            runSpacing: StrotSpacing.md,
             children: [
-              Text(
-                'Priority actions',
-                style: Theme.of(context).textTheme.titleLarge,
+              _Metric(
+                label: 'Active projects',
+                value: '${data.activeProjects}',
               ),
-              const Divider(height: StrotSpacing.xl),
-              const ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text('Approve revised scope of work'),
-                subtitle: Text('Oak Residence · Version 2.1'),
-                trailing: Icon(Icons.arrow_forward),
+              _Metric(
+                label: 'Pending decisions',
+                value: '${data.pendingApprovals}',
               ),
-              const Divider(),
-              const ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text('Confirm site inspection payment'),
-                subtitle: Text('Inspection scheduled after confirmation'),
-                trailing: Icon(Icons.arrow_forward),
+              _Metric(
+                label: 'Outstanding invoices',
+                value:
+                    '${data.currency} ${(data.outstandingInvoiceMinor / 100).toStringAsFixed(0)}',
+              ),
+              _Metric(
+                label: 'Document readiness',
+                value: '${data.documentReadinessPercent}%',
               ),
             ],
           ),
-        ),
-      ),
-    ],
+          const SizedBox(height: StrotSpacing.xl),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(StrotSpacing.lg),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Priority actions',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const Divider(height: StrotSpacing.xl),
+                  if (data.actions.isEmpty)
+                    const Text(
+                      'You are up to date. No actions require attention.',
+                    ),
+                  ...data.actions.map(
+                    (action) => ListTile(
+                      onTap: onOpen == null ? null : () => onOpen!(action),
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(action.title),
+                      subtitle: Text(
+                        '${action.context} · ${action.priority.replaceAll('_', ' ')}',
+                      ),
+                      trailing: const Icon(Icons.arrow_forward),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+class _PartnerOverview extends StatelessWidget {
+  const _PartnerOverview({required this.service, required this.onOpen});
+  final PartnerOverviewService service;
+  final ValueChanged<PartnerOverviewAction> onOpen;
+  @override
+  Widget build(BuildContext context) => FutureBuilder<PartnerOverviewRecord>(
+    future: service.load(),
+    builder: (context, snapshot) {
+      if (!snapshot.hasData) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      final data = snapshot.requireData;
+      return ListView(
+        padding: const EdgeInsets.all(StrotSpacing.lg),
+        children: [
+          const Text(
+            'PARTNER WORKSPACE',
+            style: TextStyle(
+              color: StrotColors.gold,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 2,
+            ),
+          ),
+          const SizedBox(height: StrotSpacing.md),
+          Text(
+            'Delivery command centre',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+          const SizedBox(height: StrotSpacing.sm),
+          const Text(
+            'Live assignments, submissions and payout readiness for your organization.',
+          ),
+          const SizedBox(height: StrotSpacing.xl),
+          Wrap(
+            spacing: StrotSpacing.md,
+            runSpacing: StrotSpacing.md,
+            children: [
+              _Metric(
+                label: 'Active work orders',
+                value: '${data.activeWorkOrders}',
+              ),
+              _Metric(
+                label: 'Pending assignments',
+                value: '${data.pendingAssignments}',
+              ),
+              _Metric(
+                label: 'Deliverables in review',
+                value: '${data.deliverablesInReview}',
+              ),
+              _Metric(
+                label: 'Pending payout',
+                value:
+                    '${data.currency} ${(data.pendingPayoutMinor / 100).toStringAsFixed(0)}',
+              ),
+            ],
+          ),
+          const SizedBox(height: StrotSpacing.xl),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(StrotSpacing.lg),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Priority actions',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const Divider(height: StrotSpacing.xl),
+                  if (data.actions.isEmpty)
+                    const Text(
+                      'No partner action currently requires attention.',
+                    ),
+                  ...data.actions.map(
+                    (action) => ListTile(
+                      onTap: () => onOpen(action),
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(action.title),
+                      subtitle: Text(
+                        '${action.context} · ${action.priority.replaceAll('_', ' ')}',
+                      ),
+                      trailing: const Icon(Icons.arrow_forward),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      );
+    },
   );
 }
 

@@ -12,8 +12,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final email = TextEditingController(text: 'client@strot.test');
-  final password = TextEditingController(text: 'strot-demo');
+  final email = TextEditingController();
+  final password = TextEditingController();
   bool submitting = false;
   String? error;
 
@@ -192,12 +192,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 const SizedBox(height: StrotSpacing.md),
-                const Center(
-                  child: Text(
-                    'Demo: client@strot.test / strot-demo',
-                    style: TextStyle(color: StrotColors.charcoalMuted),
+                if (const bool.fromEnvironment('STROT_USE_MOCKS'))
+                  const Center(
+                    child: Text(
+                      'Local mock account: client@strot.test / strot-demo',
+                      style: TextStyle(color: StrotColors.charcoalMuted),
+                    ),
                   ),
-                ),
               ],
             ),
           ),

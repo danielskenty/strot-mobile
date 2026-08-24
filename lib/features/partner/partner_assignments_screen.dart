@@ -2,17 +2,47 @@ import 'package:flutter/material.dart';
 import '../../core/partner/partner_assignment_service.dart';
 import '../../design_system/strot_tokens.dart';
 
-class PartnerAssignmentsScreen extends StatelessWidget {
-  const PartnerAssignmentsScreen({super.key, required this.service});
+class PartnerAssignmentsScreen extends StatefulWidget {
+  const PartnerAssignmentsScreen({
+    super.key,
+    required this.service,
+    this.initialId,
+  });
   final PartnerAssignmentService service;
+  final int? initialId;
+  @override
+  State<PartnerAssignmentsScreen> createState() =>
+      _PartnerAssignmentsScreenState();
+}
+
+class _PartnerAssignmentsScreenState extends State<PartnerAssignmentsScreen> {
+  bool openedInitial = false;
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: const Text('Assignment review')),
     body: FutureBuilder<List<PartnerAssignment>>(
-      future: service.list(),
+      future: widget.service.list(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(child: CircularProgressIndicator());
+        }
+        final items = snapshot.requireData;
+        if (!openedInitial && widget.initialId != null) {
+          openedInitial = true;
+          final matches = items.where((item) => item.id == widget.initialId);
+          if (matches.isNotEmpty) {
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) => Navigator.push<void>(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => _AssignmentDetail(
+                    item: matches.first,
+                    service: widget.service,
+                  ),
+                ),
+              ),
+            );
+          }
         }
         return ListView(
           padding: const EdgeInsets.all(StrotSpacing.lg),
@@ -31,7 +61,7 @@ class PartnerAssignmentsScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.displayMedium,
             ),
             const SizedBox(height: StrotSpacing.xl),
-            ...snapshot.data!.map(
+            ...items.map(
               (item) => Card(
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(StrotSpacing.md),
@@ -43,8 +73,10 @@ class PartnerAssignmentsScreen extends StatelessWidget {
                   onTap: () => Navigator.push<void>(
                     context,
                     MaterialPageRoute(
-                      builder: (_) =>
-                          _AssignmentDetail(item: item, service: service),
+                      builder: (_) => _AssignmentDetail(
+                        item: item,
+                        service: widget.service,
+                      ),
                     ),
                   ),
                 ),

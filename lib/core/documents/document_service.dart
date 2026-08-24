@@ -8,12 +8,14 @@ import '../network/api_client.dart';
 abstract interface class DocumentService {
   Future<List<StrotDocument>> list();
   Future<void> upload({
+    required int projectId,
     required String name,
     required Uint8List bytes,
     required String kind,
     required String caption,
   });
   Future<void> retry(int id);
+  Future<void> review(int id, String decision, String note);
 }
 
 class MockDocumentService implements DocumentService {
@@ -56,6 +58,7 @@ class MockDocumentService implements DocumentService {
   Future<List<StrotDocument>> list() async => items;
   @override
   Future<void> upload({
+    required int projectId,
     required String name,
     required Uint8List bytes,
     required String kind,
@@ -66,11 +69,15 @@ class MockDocumentService implements DocumentService {
 
   @override
   Future<void> retry(int id) async {}
+  @override
+  Future<void> review(int id, String decision, String note) async {}
 }
 
 class ApiDocumentService implements DocumentService {
-  const ApiDocumentService(this.client);
+  ApiDocumentService(this.client, {http.Client? uploadClient})
+    : _uploadClient = uploadClient ?? http.Client();
   final ApiClient client;
+  final http.Client _uploadClient;
   @override
   Future<List<StrotDocument>> list() async =>
       ((await client.get('/documents'))['data'] as List)
@@ -82,7 +89,16 @@ class ApiDocumentService implements DocumentService {
   }
 
   @override
+  Future<void> review(int id, String decision, String note) async {
+    await client.patch('/documents/$id/review', {
+      'decision': decision,
+      'note': note,
+    });
+  }
+
+  @override
   Future<void> upload({
+    required int projectId,
     required String name,
     required Uint8List bytes,
     required String kind,
@@ -96,8 +112,8 @@ class ApiDocumentService implements DocumentService {
       'size_bytes': bytes.length,
       'checksum': checksum,
       'module': 'documents',
-      'record_id': '1',
-      'project_id': 1,
+      'record_id': projectId.toString(),
+      'project_id': projectId,
       'visibility': 'project',
       'document_kind': kind,
       'caption': caption,
@@ -105,7 +121,7 @@ class ApiDocumentService implements DocumentService {
     final data = session['data'] as Map<String, dynamic>;
     final asset = data['asset'] as Map<String, dynamic>;
     final upload = data['upload'] as Map<String, dynamic>;
-    final response = await http.put(
+    final response = await _uploadClient.put(
       Uri.parse(upload['url'] as String),
       headers: (upload['headers'] as Map<String, dynamic>).map(
         (key, value) => MapEntry(key, value.toString()),

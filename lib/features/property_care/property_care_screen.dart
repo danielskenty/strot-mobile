@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 import '../../core/property_care/property_care_service.dart';
+import '../../core/property_assets/property_asset_service.dart';
+import '../../core/care_plans/care_plan_service.dart';
+import '../../core/properties/property_service.dart';
 import '../../design_system/strot_tokens.dart';
+import '../property_assets/property_assets_screen.dart';
+import '../care_plans/care_plans_screen.dart';
+import '../properties/properties_screen.dart';
 
 class PropertyCareScreen extends StatelessWidget {
   const PropertyCareScreen({
     super.key,
     required this.service,
     required this.canRequest,
+    required this.assetService,
+    required this.planService,
+    required this.propertyService,
     this.canWork = false,
   });
   final PropertyCareService service;
+  final PropertyAssetService assetService;
+  final CarePlanService planService;
+  final PropertyService propertyService;
   final bool canRequest;
   final bool canWork;
   @override
@@ -37,6 +49,37 @@ class PropertyCareScreen extends StatelessWidget {
           ),
           const Text('Planned servicing and accountable maintenance.'),
           const SizedBox(height: StrotSpacing.xl),
+          FilledButton.icon(
+            icon: const Icon(Icons.apartment_outlined),
+            label: const Text('Open property portfolio'),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (_) => PropertiesScreen(service: propertyService),
+              ),
+            ),
+          ),
+          OutlinedButton.icon(
+            icon: const Icon(Icons.inventory_2_outlined),
+            label: const Text('Open asset register'),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (_) => PropertyAssetsScreen(service: assetService),
+              ),
+            ),
+          ),
+          FilledButton.icon(
+            icon: const Icon(Icons.calendar_month_outlined),
+            label: const Text('View care plans'),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (_) => CarePlansScreen(service: planService),
+              ),
+            ),
+          ),
+          const SizedBox(height: StrotSpacing.md),
           ...snapshot.data!.map(
             (property) => Card(
               child: Padding(
