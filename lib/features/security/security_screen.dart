@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/security/security_service.dart';
 import '../../design_system/strot_tokens.dart';
+import '../legal/legal_documents_screen.dart';
 
 class SecurityScreen extends StatefulWidget {
   const SecurityScreen({super.key, required this.service});
@@ -81,6 +82,19 @@ class _SecurityScreenState extends State<SecurityScreen> {
                   child: const Text('Change password'),
                 ),
               ],
+            ),
+          ),
+        ),
+        const SizedBox(height: StrotSpacing.lg),
+        Card(
+          child: ListTile(
+            title: const Text('Legal, privacy and data rights'),
+            subtitle: const Text(
+              'Read approved policies and account-deletion guidance',
+            ),
+            trailing: const Icon(Icons.arrow_forward),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const LegalDocumentsScreen()),
             ),
           ),
         ),

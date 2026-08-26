@@ -8,11 +8,29 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Sign in to your workspace'), findsOneWidget);
     expect(find.text('Sign in securely'), findsOneWidget);
-    expect(find.textContaining('strot-demo'), findsNothing);
+    const useMocks = bool.fromEnvironment(
+      'STROT_USE_MOCKS',
+      defaultValue: false,
+    );
+    expect(
+      find.textContaining('strot-demo'),
+      useMocks ? findsOneWidget : findsNothing,
+    );
     final fields = tester
         .widgetList<TextField>(find.byType(TextField))
         .toList();
     expect(fields[0].controller?.text, isEmpty);
     expect(fields[1].controller?.text, isEmpty);
+
+    final semantics = tester.ensureSemantics();
+    expect(
+      tester.getSemantics(find.byKey(const Key('sign-in-email'))).label,
+      contains('Email address'),
+    );
+    expect(
+      tester.getSemantics(find.byKey(const Key('sign-in-password'))).label,
+      contains('Password'),
+    );
+    semantics.dispose();
   });
 }

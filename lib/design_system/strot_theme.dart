@@ -1,45 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'strot_tokens.dart';
 
 abstract final class StrotTypography {
-  static TextTheme get textTheme => GoogleFonts.interTextTheme().copyWith(
-    displayLarge: GoogleFonts.playfairDisplay(
+  static const bodyFamily = 'Inter';
+  static const headingFamily = 'Playfair Display';
+
+  static const TextTheme textTheme = TextTheme(
+    displayLarge: TextStyle(
+      fontFamily: headingFamily,
       fontSize: 56,
       fontWeight: FontWeight.w600,
       color: StrotColors.forest,
     ),
-    displayMedium: GoogleFonts.playfairDisplay(
+    displayMedium: TextStyle(
+      fontFamily: headingFamily,
       fontSize: 44,
       fontWeight: FontWeight.w600,
       color: StrotColors.forest,
     ),
-    headlineLarge: GoogleFonts.playfairDisplay(
+    headlineLarge: TextStyle(
+      fontFamily: headingFamily,
       fontSize: 36,
       fontWeight: FontWeight.w600,
       color: StrotColors.forest,
     ),
-    headlineMedium: GoogleFonts.playfairDisplay(
+    headlineMedium: TextStyle(
+      fontFamily: headingFamily,
       fontSize: 28,
       fontWeight: FontWeight.w600,
       color: StrotColors.forest,
     ),
-    titleLarge: GoogleFonts.playfairDisplay(
+    titleLarge: TextStyle(
+      fontFamily: headingFamily,
       fontSize: 22,
       fontWeight: FontWeight.w600,
       color: StrotColors.forest,
     ),
-    bodyLarge: GoogleFonts.inter(
+    bodyLarge: TextStyle(
+      fontFamily: bodyFamily,
       fontSize: 16,
       height: 1.6,
       color: StrotColors.charcoal,
     ),
-    bodyMedium: GoogleFonts.inter(
+    bodyMedium: TextStyle(
+      fontFamily: bodyFamily,
       fontSize: 14,
       height: 1.5,
       color: StrotColors.charcoal,
     ),
-    labelLarge: GoogleFonts.inter(
+    labelLarge: TextStyle(
+      fontFamily: bodyFamily,
       fontSize: 14,
       fontWeight: FontWeight.w600,
       color: StrotColors.charcoal,
@@ -50,6 +60,7 @@ abstract final class StrotTypography {
 abstract final class StrotTheme {
   static ThemeData get light => ThemeData(
     useMaterial3: true,
+    fontFamily: StrotTypography.bodyFamily,
     colorScheme: const ColorScheme.light(
       primary: StrotColors.forest,
       onPrimary: StrotColors.cream,

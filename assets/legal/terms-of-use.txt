@@ -1,0 +1,157 @@
+STROT
+STROT LIMITED
+TERMS OF USE
+The rules for using Strot’s website, applications, portals and services
+EFFECTIVE DATE
+26 August 2026
+LAST UPDATED
+26 August 2026
+COMPANY
+Strot Limited
+WEBSITE
+getstrot.com
+IMPORTANT — PLEASE READ
+By accessing or using the Services, creating an account, requesting a quotation, making a payment or accepting a Service Order, you agree to these Terms. A quotation, proposal, contract, work order or other project-specific document may add to or override these Terms for that engagement.
+Trusted. Transparent. Professional.
+
+	•	About these Terms
+These Terms of Use ("Terms") form a binding agreement between you and Strot Limited ("Strot", "we", "us" or "our") concerning your access to and use of getstrot.com, our client, partner, provider and administrator portals, mobile and desktop applications, APIs, AI tools, communications and other digital or managed services (together, the "Services").
+These Terms apply to website visitors, prospective and existing clients, property owners and authorised representatives, referral participants, partners, service providers, API providers, staff and other authorised users. If you use the Services for an organisation or another person, you confirm that you have authority to bind that party.
+The following documents form part of the agreement where applicable: an accepted quotation or proposal; consultation or inspection booking; Service Order; project contract; partner/provider agreement; payment schedule; Privacy Policy; Cookie Notice; referral terms; acceptable-use requirements; and any signed variation. If there is a conflict, the project-specific signed or expressly accepted document prevails for that project, followed by these Terms.
+	•	Eligibility, accounts and authority
+Age and capacity. You must be at least 18 years old and legally capable of entering a contract.
+Client registration. Only clients may self-register. Partner, provider, staff, finance and administrator accounts are created or invited by an authorised Strot Super Admin.
+Accurate information. You must provide complete, current and truthful information and keep it updated.
+Account security. You are responsible for your password, one-time codes, authorised devices and all activity under your account. Do not share credentials or allow another person to impersonate you.
+Property authority. Before requesting work, uploading ownership documents, granting site access or approving a project, you must have the legal right or authorisation to do so.
+Notify hello@getstrot.com immediately if an account, payment, project file or access credential may have been compromised. Strot may require identity, business, professional or authority verification before enabling a feature or accepting an instruction.
+	•	What Strot provides
+Strot is an integrated property-services brand and managed platform. Depending on the engagement, we may provide or coordinate construction, architectural and engineering design, interiors, smart-home systems, security systems, government approvals, property care, consultations, inspections, project supervision, evidence management, payments, insurance or mortgage introductions, and related services.
+Some work is performed by approved independent partners or API providers under Strot’s coordination, supervision and brand standards. The identity or role of a partner may be disclosed where necessary for project delivery, law, safety or professional accountability. Separate regulated services may be supplied directly by the relevant licensed provider under its own terms.
+Information on public pages, portfolios, articles, calculators, examples or AI outputs is general and does not constitute an offer, final quotation, professional certification, planning approval, investment advice, insurance advice, mortgage approval or a guarantee of project outcome.
+	•	Consultations, inspections and project formation
+A project begins only when Strot issues or accepts the applicable booking, quotation, proposal, Service Order or contract and receives any required payment. A conversation, site visit, preliminary estimate, AI response or partner discussion does not by itself create an obligation to start work.
+Consultation and site-inspection fees are separate unless the applicable document states otherwise.
+An inspection is based on visible and reasonably accessible conditions unless invasive testing or a specialist survey is expressly included.
+A preliminary estimate may change after measurement, technical review, approvals, selections, market changes or discovery of concealed conditions.
+The accepted document will identify the scope, deliverables, assumptions, exclusions, timeline, price, payment stages and acceptance process.
+No person may rely on a draft drawing, unapproved design, estimate or site comment as a final construction instruction.
+	•	Pricing, taxes and commercial terms
+Prices may depend on location, property type, scope, complexity, access, urgency, risk, materials, professional requirements, approvals, travel and market conditions. Strot may use confidential internal pricing categories, commercial rules and margins. The client is charged the final Strot price shown in the accepted quotation or Service Order; a partner is entitled only to the fee separately agreed with Strot.
+Unless stated otherwise, prices are in Nigerian naira, include only the listed scope and exclude taxes, statutory fees, authority charges, permits, third-party disbursements, travel, testing, materials or other items expressly marked as excluded. Strot may correct an obvious pricing or typographical error before accepting an order.
+A quotation remains valid only for the stated period. If no validity period is stated, Strot may update it before acceptance where costs, availability, exchange rates, taxes or scope have materially changed.
+	•	Payments, confirmation and refunds
+Online payment
+Online payments may be processed through Nomba. A payment provider’s terms and privacy notice also apply. Strot does not control a bank’s authorisation, settlement, reversal, downtime or card-security process.
+Bank transfer and offline payment
+Where bank transfer is offered, use only the account details displayed in the authenticated Strot platform, an accepted Strot document or another verified Strot channel. You may upload proof of payment, but upload alone does not confirm payment. Work, access or release may remain pending until an authorised Strot administrator verifies cleared funds.
+General payment rules
+Payments must follow the agreed schedule. Strot may pause work, withhold deliverables or revise a programme for overdue amounts.
+You must not make payment directly to a partner, provider or project worker unless Strot gives written authorisation.
+You must not initiate an improper chargeback or reversal for a valid, authorised payment. Notify Strot first so the matter can be investigated.
+Consultations, inspections and completed work are ordinarily non-refundable once performed. Deposits, mobilisation payments, materials and third-party commitments are handled under the accepted Service Order and applicable law.
+Where Strot approves a refund, it may be returned through the original channel after verification and deduction of any lawful, disclosed, non-recoverable cost.
+Nothing in these Terms removes any non-excludable refund, repair, replacement or other consumer remedy available under applicable Nigerian law.
+	•	Project instructions, approvals and variations
+The client must appoint an authorised decision-maker and provide timely access, information, selections and approvals. Strot may rely on instructions sent through the platform, the registered email or phone number, a signed document or another agreed channel.
+A status such as "Stage Ready" means the stated readiness conditions have been recorded; it does not necessarily mean physical work has begun.
+A submitted daily report or uploaded evidence does not certify progress, quantity, quality or payment entitlement until Strot completes the applicable review.
+Client silence does not approve a variation, payment claim or design unless the accepted project document expressly provides a deemed-approval process permitted by law.
+A change to scope, quantity, specification, material, design, sequence, access, timeline or site condition may require a written variation, additional payment and a revised programme before execution.
+Strot may refuse an instruction that is unsafe, unlawful, technically unsound, outside the paid scope or inconsistent with an approval or professional duty.
+	•	Partner and provider portal rules
+A partner or provider account is personal to the approved organisation and authorised user. In addition to these Terms, the applicable partner, confidentiality, pricing, API or service agreement applies.
+communicate with the client only through or as authorised by Strot and maintain professional conduct;
+not discuss, collect, renegotiate or disclose money directly with the client unless Strot gives written authority;
+submit accurate quotations, reports, measurements, evidence, qualifications and availability;
+perform assigned work under its own professional responsibility, licences and applicable standards, subject to Strot supervision and quality controls;
+protect client, project, pricing, margin, referral, access and business information as confidential;
+not bypass, solicit or contract directly with a Strot client or introduced lead contrary to the applicable agreement; and
+not represent that it can bind Strot, approve a variation, certify payment or make a warranty on Strot’s behalf unless expressly authorised.
+A provider may present completed work in its portfolio only where its agreement permits, the client’s confidential information and security details are protected, necessary consent is obtained, and the presentation does not falsely imply a direct client relationship or disclose Strot’s commercial arrangements.
+	•	Site access, health, safety and property conditions
+A client must provide lawful and reasonably safe access to the site, disclose known hazards, restrictions, occupants, utilities, disputes and relevant approvals, and ensure that children, visitors and unauthorised persons do not interfere with work areas.
+Strot and its partners may suspend or leave a site where there is an immediate safety, security, legal, access or payment concern. Reasonable resulting delay and remobilisation cost may be added where the issue is not caused by Strot.
+Construction and installation can involve dust, noise, vibration, temporary disconnection, restricted access and other ordinary disruption. Specific protections, working hours, access procedures and insurance responsibilities should be stated in the project documents.
+	•	Uploads, media and S3 storage
+The Services may allow you to upload drawings, surveys, photographs, videos, audio, payment proofs, identity documents, reports and other files ("User Content"). Strot intends to store uploads in private S3-compatible storage and make them available through authenticated requests or temporary signed links.
+You must own User Content or have all permissions needed to upload, use and share it for the project.
+Do not upload malware, illegal content, unrelated personal information, confidential material belonging to another person, or content that infringes rights.
+Strot may impose file-type, size, retention and storage limits; scan, quarantine, reject or remove unsafe files; and preserve copies required for a project, audit, dispute or law.
+Downloads and links are for authorised project use only. Do not forward a signed link, access code or private file to an unauthorised person.
+Backups support recovery but are not a substitute for any original document the client or professional must retain.
+	•	User Content and permissions
+You retain ownership of User Content. You grant Strot and its approved service providers a worldwide, non-exclusive, royalty-free licence to host, copy, process, convert, display, transmit, back up and use User Content only as reasonably necessary to provide, secure, administer, evidence and improve the Services, comply with law, or resolve a dispute. This licence ends when the content is deleted from active and backup systems, except for lawful retained copies.
+You permit Strot to use project information in an anonymised or aggregated form that does not identify you or reveal a property’s security-sensitive details. Strot will not publicly use identifiable project media as marketing or portfolio material without an appropriate permission or other lawful basis.
+	•	Intellectual property and project deliverables
+The Services, Strot name and logos, interface, design system, software, databases, processes, templates, text, graphics, AI workflows and other Strot materials are owned by or licensed to Strot and are protected by intellectual-property laws. No right is granted except the limited right to use the Services under these Terms.
+Ownership and permitted use of drawings, designs, reports, software, models, photographs, specifications and other project deliverables will be stated in the applicable Service Order or professional agreement. Unless an accepted document expressly transfers ownership, Strot or the relevant creator retains intellectual property and, after full payment, the client receives a non-exclusive licence to use the final approved deliverable for the identified property and purpose.
+Pre-existing tools, standard details, libraries, methods, partner know-how, third-party components and licensed software remain with their respective owners. Drafts, unpaid deliverables and rejected concepts may not be built, copied, sold, modified or submitted for approval without written permission.
+	•	Strot AI and automated features
+Strot AI may summarise information, organise evidence, answer questions, draft text, suggest services, identify missing items or support project and pricing workflows. AI output can be inaccurate, incomplete or unsuitable. You must review it and obtain qualified professional advice before relying on it for design, structure, electricity, mechanics, safety, approvals, finance, insurance, mortgage or construction decisions.
+Do not submit passwords, one-time codes, full payment-card data, access credentials or unnecessary sensitive information to an AI feature. You may not use Strot AI to generate unlawful, deceptive, infringing, discriminatory or unsafe content, or to evade a professional review or platform control.
+Material approvals, payment confirmations, partner decisions and progress certifications remain subject to authorised human review. Strot may record prompts and outputs for security, quality and support as described in the Privacy Policy.
+	•	Referrals, affiliates and rewards
+Referral or affiliate participation is available only where shown in an authorised dashboard or written programme. Eligibility, qualifying services, reward basis, attribution window, payment threshold, tax treatment, cancellation and anti-fraud rules may vary by role and campaign.
+A referral must be genuine, consent-based and accurately represented. Use an approved link or code where possible.
+No reward is earned for a duplicate, self-referral, fabricated lead, cancelled or refunded transaction, prohibited advertising, impersonation or activity that violates these Terms.
+A service or API provider cannot refer, view commission for, or earn commission on its own service category.
+A reward becomes payable only after Strot validates attribution and the qualifying client payment or milestone has cleared and is no longer reasonably subject to reversal.
+Referral participants may not promise a price, discount, approval, timeline, return, mortgage, insurance cover or project outcome on Strot’s behalf.
+Strot may withhold, reverse or recover a reward affected by error, fraud, chargeback, collusion, conflict of interest or breach, after reasonable review and subject to applicable law.
+	•	Third-party services and APIs
+The Services may integrate Nomba, banks, insurers, mortgage providers, maps, cloud storage, communications, identity tools, analytics, social platforms and other third parties. Their services may be governed by separate terms, eligibility rules, fees and privacy notices.
+Strot does not guarantee that a third party will approve an application, provide credit or insurance, maintain an API, complete a transfer, preserve a quoted rate or remain available. Strot may replace, suspend or remove an integration where reasonably necessary. When Strot acts only as an introducer, the final contract is between you and the regulated provider.
+	•	Acceptable use and prohibited conduct
+You must use the Services lawfully, honestly and only for their intended purpose. You must not:
+impersonate another person, misstate authority, create a false account or submit false ownership, payment, qualification, evidence or referral information;
+access another user’s account, project, price, file, API, system or administrative function without authorisation;
+probe, scan, disrupt, overload, scrape, reverse engineer, bypass security, introduce malware or automate access except through an approved API;
+use the Services for fraud, money laundering, corruption, unlawful surveillance, harassment, discrimination, dangerous work or any illegal purpose;
+copy, resell, sublicense or exploit Strot software, content, data, brand, client relationships or confidential commercial information;
+publish false or misleading statements presented as Strot-approved, manipulate evidence or remove an audit marker;
+upload content that is unlawful, defamatory, obscene, infringing, privacy-invasive or unrelated to the authorised project; or
+help another person do anything prohibited by these Terms.
+	•	Monitoring, suspension and account closure
+Strot may use access controls, logs, file scanning, fraud checks and reasonable review to secure the Services and enforce these Terms. We may restrict a feature, pause a project, quarantine content, suspend or close an account, or preserve evidence where we reasonably believe there is a security risk, non-payment, unlawful activity, material breach, false information, abuse, safety concern or legal requirement.
+Where appropriate, we will give notice and an opportunity to remedy. Immediate action may be taken where delay could expose a person, property, payment, system, professional duty or evidence to harm. A user may request account closure, but financial, project, warranty, legal and audit records may be retained as described in the Privacy Policy.
+Termination does not cancel accrued payment obligations, confidentiality, intellectual-property restrictions, lawful retention, indemnities, dispute provisions or any clause intended to survive.
+	•	Service standards, warranties and disclaimers
+Strot will use reasonable care and skill in providing its Services and will honour any express warranty stated in an accepted Service Order. Goods and services remain subject to non-excludable consumer guarantees and remedies under applicable law.
+Except to the extent prohibited by law, the digital platform is provided on an "as available" basis. Strot does not warrant uninterrupted access, error-free software, permanent availability of an integration, acceptance by a government authority, availability of a material, an increase in property value, finance or insurance approval, or a result caused by inaccurate client information, concealed conditions, third-party infrastructure, misuse or an unauthorised modification.
+A portfolio image, render, sample, estimate or forecast is illustrative. Natural materials, screens, lighting, site conditions and workmanship tolerances can cause reasonable variation in colour, texture, dimension and appearance.
+	•	Timelines, delay and force majeure
+Unless expressly guaranteed in a signed Service Order, a timeline is a good-faith programme rather than a fixed completion guarantee. It may be adjusted for variations, late decisions or payments, approvals, access restrictions, concealed conditions, shortages, weather, public utilities, security events, labour disruption or dependencies outside Strot’s reasonable control.
+Neither party is liable for delay caused by an event beyond its reasonable control, provided the affected party gives reasonable notice, takes proportionate steps to reduce the impact and resumes performance when practicable. Payment for work already completed, materials committed and non-cancellable third-party costs remains due.
+	•	Limitation of liability
+Nothing in these Terms excludes or limits liability that cannot lawfully be excluded, including liability for fraud, wilful misconduct, death or personal injury caused by negligence, or a mandatory consumer remedy.
+Subject to that rule and to the maximum extent permitted by law, Strot is not liable for indirect, consequential, special or punitive loss; loss of anticipated profit, opportunity or goodwill; or loss caused by unauthorised access, client delay, inaccurate information, misuse, an unapproved variation, concealed site condition, third-party platform or force-majeure event.
+For a claim arising from a specific paid Service, Strot’s aggregate contractual liability will not exceed the amount actually paid to Strot for the part of that Service giving rise to the claim during the twelve months before the event, except where the accepted Service Order provides a different lawful limit. This clause is applied only to the extent fair and enforceable under applicable law.
+	•	Your responsibility and indemnity
+You are responsible for losses reasonably caused by your unlawful use, material breach, false authority, infringement, unsafe instruction, misuse of deliverables, unauthorised disclosure or User Content. To the extent permitted by law, you will indemnify Strot and its personnel against a third-party claim arising directly from those matters, except to the extent the claim was caused by Strot’s own breach, negligence or misconduct.
+	•	Complaints and dispute resolution
+Please raise a service complaint promptly through the relevant project channel or hello@getstrot.com, identify the project or transaction, describe the issue and provide supporting evidence. This allows Strot to inspect, correct, complete, replace, refund or otherwise resolve the matter where appropriate.
+The parties should first attempt good-faith resolution through authorised representatives. If unresolved, either party may propose mediation in Lagos. Nothing prevents a consumer from using the Federal Competition and Consumer Protection Commission complaint process, a data subject from contacting the Nigeria Data Protection Commission, or a party from seeking urgent court relief.
+	•	Privacy and confidentiality
+Strot’s Privacy Policy explains how we process personal data. By using the Services, you acknowledge that project administration may require Strot to share limited information with assigned partners, providers, payment processors, regulators and professional advisers.
+Confidential information includes non-public project, pricing, margin, partner, client, access, security, software and business information. An authorised user must protect it and use it only for the relevant Service. This duty does not cover information lawfully public, independently developed or required to be disclosed by law, provided lawful notice is given where permitted.
+	•	Electronic communications and records
+You consent to receive contractual and service communications electronically through the platform, email, SMS, WhatsApp, push notification or another agreed channel. Electronic acceptance, check-box consent, one-time-code confirmation, uploaded signature, payment record, audit log and message may be used as evidence to the extent permitted by law.
+You must maintain a working email address and phone number and review project notices. A communication is treated as received when delivered to the registered channel without a failure notice, subject to any mandatory legal rule.
+	•	Changes to the Services or these Terms
+Strot may improve, replace or discontinue a non-contracted feature and may update these Terms for legal, security, operational or service changes. The current version will be posted on getstrot.com with its effective date. We will give additional notice of a material change where appropriate.
+A change will not retroactively reduce a paid project right already fixed in an accepted Service Order unless required by law or agreed by the parties. Continued use after the effective date of updated Terms constitutes acceptance, but you may stop using optional Services and request account closure.
+	•	Governing law and jurisdiction
+These Terms and non-contractual disputes connected with them are governed by the laws of the Federal Republic of Nigeria. Subject to any mandatory consumer forum and the good-faith resolution process above, the courts of Lagos State have jurisdiction.
+These Terms are intended to operate consistently with the Federal Competition and Consumer Protection Act 2018, the Nigeria Data Protection Act 2023, the Cybercrimes (Prohibition, Prevention, etc.) Act 2015 as amended, and other applicable Nigerian law.
+	•	General provisions
+Entire agreement. These Terms and the applicable incorporated documents constitute the agreement for use of the Services.
+No waiver. Failure to enforce a provision once does not waive it.
+Severability. If a provision is unlawful or unenforceable, it will be limited or removed to the minimum extent necessary and the remainder continues.
+Assignment. You may not transfer an account or agreement without Strot’s written consent. Strot may transfer its rights as part of a restructuring, financing, sale or lawful service arrangement, without reducing existing client rights.
+No partnership or agency. These Terms do not create employment, partnership, joint venture or agency between Strot and a user. A separate signed agreement may define a partner relationship.
+Headings. Headings are for convenience and do not change meaning.
+	•	Contact Strot
+Strot Limited
+5, Admiralty Road, Lekki Phase 1, Lagos, Nigeria
+hello@getstrot.com  |  +234 802 253 2118  |  getstrot.com

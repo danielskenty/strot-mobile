@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 abstract final class StrotColors {
   static const forest = Color(0xFF12372A);
   static const gold = Color(0xFFC9983E);
+  // Derived gold tone for accessible foreground text on cream surfaces.
+  static const goldText = Color(0xFF906820);
   static const cream = Color(0xFFF7F3EA);
   static const charcoal = Color(0xFF222624);
   static const forestMuted = Color(0x2912372A);

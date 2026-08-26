@@ -1,0 +1,181 @@
+STROT
+STROT LIMITED
+PRIVACY POLICY
+How Strot collects, uses, shares and protects personal data
+EFFECTIVE DATE
+26 August 2026
+LAST UPDATED
+26 August 2026
+COMPANY
+Strot Limited
+WEBSITE
+getstrot.com
+PRIVACY AT A GLANCE
+Strot uses personal data to provide property, construction, interior, smart-home and property-care services; manage projects, evidence, payments and referrals; connect authorised users with approved service and API partners; and protect the platform. We do not sell personal data. Access is role-based, uploads are kept in private cloud storage, and you may exercise your rights under Nigerian data-protection law.
+Design. Build. Live well — with privacy built in.
+
+	•	Introduction and scope
+This Privacy Policy explains how Strot Limited ("Strot", "we", "us" or "our") collects, uses, stores, shares and otherwise processes personal data when you use our website, portals, mobile or desktop applications, consultations, inspections, project-management tools, payment channels, referral programmes, APIs, artificial-intelligence features, communications or other services (together, the "Services").
+It applies to clients and prospective clients; property owners, occupiers and authorised representatives; vendors and service partners; API and technology providers; referral participants; staff and authorised administrators; website visitors; and other individuals whose personal data is processed through the Services.
+Where a third-party provider determines independently how it uses personal data—for example, a payment gateway, bank, insurer, mortgage provider or messaging platform—its own privacy notice may also apply.
+	•	Who we are and how to contact us
+Strot Limited is the data controller for personal data processed for the purposes described in this Policy, unless we state otherwise for a specific service.
+Registered business name: Strot Limited
+Office: 5, Admiralty Road, Lekki Phase 1, Lagos, Nigeria
+Website: getstrot.com
+Email: hello@getstrot.com
+WhatsApp: +234 802 253 2118
+Privacy requests may be addressed to our Privacy Team through hello@getstrot.com. Please write "Privacy Request" in the subject line.
+	•	Personal data we collect
+The categories we collect depend on your relationship with Strot and the Services you use.
+Identity and profile data. Name, photograph, date of birth where needed, gender where voluntarily supplied, username, account type, identification or verification documents, signature, company and role.
+Contact and communication data. Email address, phone and WhatsApp number, postal address, communication preferences, enquiries, support messages, calls, meeting notes and correspondence.
+Property and project data. Property address, coordinates, maps, ownership or authority information, land and building details, property type, specifications, drawings, surveys, bills of quantities, work plans, approvals, site instructions, inspections, defects, handover and warranty records.
+Media and evidence. Documents, photographs, videos, audio, CCTV or access records where applicable, timestamps, geotags, device metadata, evidence maps and other files uploaded to or created within Strot.
+Service and transaction data. Consultations, quotations, orders, contracts, invoices, payment schedules, receipts, Nomba transaction references, bank-transfer details, proof-of-payment files, refunds and payout records.
+Partner, provider and workforce data. Business details, qualifications, licences, portfolio, insurance, compliance records, assigned projects, performance, attendance, bank and payout details, agreements and authorised users.
+Referral and growth data. Referral link or code, referrer and referred-person identifiers, consent record, attribution data, campaign source, qualifying activity, reward eligibility, payout and anti-fraud checks.
+Technical and usage data. IP address, device and browser information, operating system, app version, identifiers, session and security logs, login history, cookie choices, pages or features used, crash and performance data.
+Location data. Property or site location and, only where enabled or necessary, device location for inspections, attendance, evidence integrity, navigation, service availability and fraud prevention.
+Smart-home and security data. System designs, equipment identifiers, installation and maintenance records, access permissions and operational information. We apply heightened restrictions because this information may reveal security arrangements.
+AI interaction data. Prompts, questions, uploaded content, outputs, feedback and related safety or quality signals when you use Strot AI features.
+Derived data. Service recommendations, project status, risk indicators, duplicate or quality flags, referral attribution, eligibility assessments and internal location-pricing classifications.
+Please do not provide personal data that is not reasonably required for the relevant Service. If you provide another person’s data, you must have authority to do so and, where required, give that person this Policy.
+	•	How we collect personal data
+directly from you when you enquire, register as a client, complete a form, upload a file, make a payment, attend a consultation or communicate with us;
+from an organisation, property owner, client or authorised representative that appoints or communicates with you;
+when a Super Admin creates an authorised partner, provider, staff or administrator account; only clients may self-register;
+from consent-based referrals, campaign links and approved growth partners;
+from service partners, API providers, payment providers, banks, identity or compliance providers, insurers or mortgage providers involved in a Service you request;
+automatically through cookies, logs, device technologies, security tools and interactions with our website or apps; and
+from public registers, professional profiles or other lawful public sources where relevant to verification, due diligence or service delivery.
+	•	Why we use personal data and our lawful bases
+We process personal data only where a lawful basis applies. Depending on the activity, we rely on one or more of the following:
+Contract and pre-contract steps. To respond to a request, prepare a quotation, create or administer an account, deliver a Service, manage a project, process a payment or fulfil an agreement.
+Legal obligation. To keep required records, respond to regulators or lawful requests, meet tax, accounting, safety, anti-fraud and other compliance duties.
+Legitimate interests. To operate, secure and improve Strot; coordinate approved partners; maintain evidence and audit trails; prevent fraud; manage claims; analyse performance; and communicate about related Services, where those interests are not overridden by your rights.
+Consent. For optional marketing, certain cookies, precise device location, referral invitations, sensitive data or another activity where consent is the appropriate basis.
+Vital interests or public interest. Where processing is reasonably necessary to protect someone in an emergency or for a legally recognised public-interest purpose.
+Where consent is used, you may withdraw it at any time. Withdrawal does not affect processing already carried out lawfully. If required data is not provided, we may be unable to provide the relevant Service.
+	•	How we use personal data
+create, verify, secure and administer accounts and role-based permissions;
+understand a project request, arrange consultations or inspections, prepare quotations and enter contracts;
+plan, assign, supervise, record and deliver construction, architectural, interior, smart-home, property-care and related services;
+manage site evidence, measurements, approvals, variations, milestones, handover, maintenance, warranties, disputes and audit trails;
+match clients and projects with approved Strot partners or API providers while limiting each party to the information needed for its role;
+calculate service pricing, including internal location-based pricing categories visible only to authorised Strot personnel;
+process Nomba payments, bank transfers, payment proofs, refunds, partner payouts and financial reconciliation;
+operate private media storage, backup, download, movement, recovery and retention controls;
+administer referral attribution, eligibility, rewards and anti-abuse rules, including exclusions that prevent providers from earning on their own services;
+provide mortgage, insurance, identity, messaging or other integrated services when you request them;
+send transactional notices, service updates, support responses and, where permitted, marketing communications;
+maintain security, investigate suspicious activity, enforce agreements, handle complaints and comply with law; and
+analyse, test and improve our Services, user experience, reliability, accessibility and business operations using aggregated or de-identified information where reasonably possible.
+	•	AI-assisted features and automated processing
+Strot may use artificial intelligence to answer questions, summarise project information, organise evidence, identify missing items, support recommendations, draft communications, assist pricing or risk review and improve workflows. AI outputs may be incomplete or inaccurate and should not replace professional judgement.
+Strot does not intend to make a solely automated decision that has a legal or similarly significant effect on you without an appropriate lawful basis, safeguards and a meaningful way to request human review. Material project approvals, payment confirmations, partner decisions and progress certifications remain subject to authorised human oversight.
+Do not place passwords, payment-card details, access codes or unnecessary sensitive information in an AI prompt. AI providers receive only the information reasonably needed to provide the feature and are subject to contractual and security controls where applicable.
+	•	Property location, maps, media and project evidence
+Property and site data may reveal a person’s home, movements, occupancy, assets or security arrangements. We therefore restrict access by project role and purpose. Geotags, timestamps and device information may be used to confirm inspection attendance, evidence integrity, work progress or fraud indicators.
+Strot uses an internal location-pricing classification to support consistent commercial decisions. The classification and Strot’s internal margin logic are confidential business information and are visible only to authorised personnel. Clients receive the applicable final price; partners receive only the commercial information necessary for their engagement.
+Before uploading media, users should avoid capturing unrelated people, neighbouring properties, identification documents, vehicle plates or private areas unless necessary and lawful. Where individuals are identifiable, the uploader must have an appropriate basis to capture and share the material.
+	•	Payments and financial information
+Online payments may be processed through Nomba. Nomba and participating banks process payment credentials and transaction data under their own terms and privacy notices. Strot generally receives transaction status, amount, reference and reconciliation information rather than full payment-card details.
+For bank transfers, Strot displays account details configured by an authorised Super Admin. A client may upload proof of payment for manual verification. Payment proofs are treated as private project documents and may be reviewed only by authorised finance or administrative personnel. Please obscure unrelated balances, account transactions or personal information before uploading a bank statement or receipt.
+A payment is not treated as confirmed solely because a file was uploaded. Strot may verify the transaction with the relevant bank or payment provider and maintain an audit trail of confirmation, rejection, refund or dispute activity.
+	•	Referrals and growth programmes
+Strot may operate referral arrangements for clients, professional introducers, growth partners, service or API partners and authorised staff. The referral type and eligible opportunities shown in a dashboard depend on the user’s approved role.
+Use a referral link or code instead of uploading another person’s details wherever possible.
+If you submit a person’s contact details, you must first have their permission to be contacted by Strot and must not misrepresent your relationship with them.
+We process referral data to attribute introductions, prevent duplicate or fraudulent claims, determine eligibility, communicate status and make approved reward payments.
+A service or API provider cannot refer, view commission for, or earn commission on its own service category. Strot may apply other eligibility, conflict and anti-abuse rules.
+Referred individuals may ask Strot to stop contact or delete referral information, subject to legal and anti-fraud retention needs.
+	•	Cookies, analytics and similar technologies
+Our website and apps may use cookies, local storage, software development kits, pixels and logs. These technologies may be:
+Strictly necessary. Required for sign-in, security, load balancing, forms, preferences and core functionality.
+Functional. Used to remember optional settings and improve convenience.
+Analytics. Used to understand use, performance, errors and feature effectiveness.
+Marketing. Used, with any required consent, to measure campaigns or tailor communications.
+Where required, non-essential technologies will be subject to your choices. You may also use browser or device controls, although blocking necessary technologies can affect the Services. A separate Cookie Notice may provide provider-specific details.
+	•	When we share personal data
+We do not sell personal data. We may share the minimum necessary information with:
+authorised Strot staff and administrators with a legitimate need to know;
+approved architects, engineers, contractors, interior designers, smart-home providers, inspectors, property-care providers and other partners assigned to a project;
+API, mortgage, insurance, identity, mapping or other providers involved in a Service you choose;
+Nomba, banks, accountants, auditors and payment or payout providers;
+Amazon Web Services or another approved cloud-storage, backup, hosting, security, email, SMS, WhatsApp, analytics or support provider;
+professional advisers, insurers, regulators, courts, law-enforcement bodies or public authorities where lawful and necessary;
+a buyer, investor or successor in a proposed or completed corporate transaction, subject to appropriate confidentiality; and
+another recipient at your direction or with your consent.
+Partners act under Strot’s brand and supervision for assigned work, but they do not receive unrestricted access to client, pricing, referral, margin or payment information. Contractual, confidentiality and access-control measures apply according to each recipient’s role.
+	•	International transfers
+Some cloud, communications, analytics, AI or API providers may process personal data outside Nigeria. Before an international transfer, Strot will use a lawful transfer mechanism and reasonable safeguards required by the Nigeria Data Protection Act 2023 and applicable guidance, which may include an adequacy basis, contractual protections, technical measures, consent where appropriate, or another recognised mechanism.
+You may contact us for information about the safeguards relevant to a particular transfer, subject to confidentiality and security limitations.
+	•	Cloud storage, security and access controls
+Strot intends to use private S3-compatible object storage for uploads and media. Files are not intended to be publicly accessible by default. Access may be delivered through short-lived signed links, authenticated application requests or controlled administrative tools.
+role-based access and least-privilege permissions;
+multi-factor authentication for sensitive administrative access where supported;
+encryption in transit and at rest where available;
+private storage buckets, restricted keys and temporary signed download links;
+file-type, size, malware and integrity checks appropriate to the upload;
+audit logs for important account, payment, project and media actions;
+backups, versioning, recovery testing, monitoring and incident-response procedures; and
+contractual confidentiality and security duties for authorised personnel and providers.
+No system is completely secure. Users must protect passwords, one-time codes and devices, use authorised accounts only, and promptly report suspected misuse to hello@getstrot.com.
+	•	How long we retain personal data
+We retain personal data only for as long as reasonably necessary for the purpose collected, including contract performance, safety, warranty, tax, accounting, dispute, fraud-prevention and legal requirements. The periods below are working retention standards and may be extended or shortened where law, a contract, a claim, an investigation or a documented business need requires.
+Record category
+Typical retention approach
+Enquiries and unconverted referrals
+Usually 24 months after the last meaningful interaction.
+Client account and profile data
+While active and generally 6 years after closure or the last transaction.
+Contracts, invoices, receipts, payment proofs and reconciliation
+Generally 7 years after completion or the relevant financial period.
+Partner/provider due diligence and agreements
+While active and generally 7 years after the relationship ends.
+Project designs, approvals, site evidence, handover and warranty records
+Generally 10 years after project completion, or longer for an active warranty, claim, legal duty or agreed archival service.
+Support and complaint records
+Generally 3 years after closure, longer where connected to a project or dispute.
+Security and audit logs
+Usually 12–24 months, longer for an investigation or legal hold.
+Marketing preferences
+Until withdrawal or inactivity; a minimal suppression record may be retained to honour an opt-out.
+Deletion from active systems may be followed by a limited backup or versioning period. During that period, data is isolated from ordinary use and removed or overwritten according to the backup cycle. Data subject to a legal hold is retained until the hold ends.
+	•	Your data-protection rights
+Subject to the Nigeria Data Protection Act 2023 and applicable limitations, you may have the right to:
+be informed about the processing of your personal data;
+request access to your personal data and information about its use;
+request correction of inaccurate or incomplete data;
+request deletion where there is no lawful reason to continue processing;
+object to processing based on legitimate interests or direct marketing;
+request restriction of processing in certain circumstances;
+receive eligible data in a structured, commonly used and machine-readable format or request portability;
+withdraw consent at any time where processing relies on consent;
+request human intervention and challenge an eligible solely automated decision; and
+lodge a complaint with the Nigeria Data Protection Commission (NDPC).
+To make a request, email hello@getstrot.com with the subject "Privacy Request" and describe the right you wish to exercise. We may verify your identity or authority before acting. We will respond within the period required by applicable law and will explain any lawful limitation, refusal or extension. Ordinarily, no fee is charged, but the law may permit a reasonable fee or refusal for manifestly unfounded or excessive requests.
+	•	Communications and marketing choices
+Service communications—such as security alerts, payment updates, project notices and changes to contractual terms—are necessary for the relevant Service and are not marketing. You may opt out of marketing through an unsubscribe link, account setting, reply instruction or by contacting us. On WhatsApp or SMS, you may use the stated opt-out method or ask us to stop promotional messages.
+Opting out of marketing does not prevent Strot from sending essential service communications or maintaining a minimal suppression record to respect your choice.
+	•	Children’s data
+Strot accounts and commercial Services are intended for persons aged 18 or over. We do not knowingly invite children to create accounts. If project information about a child is genuinely necessary, it must be supplied by a parent, guardian or another person with lawful authority and limited to what is needed. Contact us if you believe a child’s data was provided without appropriate authority.
+	•	Third-party services, links and social media
+The Services may link to or integrate third-party websites, APIs, payment tools, maps, social networks or messaging platforms. Strot does not control an independent third party’s privacy practices. Review its privacy notice before providing information. Interactions with Strot through LinkedIn, Facebook, Instagram, X, YouTube, TikTok, Pinterest or WhatsApp are also subject to the relevant platform’s rules.
+	•	Personal-data incidents
+If Strot becomes aware of a personal-data breach, we will investigate, contain and assess it, document appropriate action and notify the NDPC and affected individuals where required by law. If you suspect unauthorised access, disclosure, loss or alteration involving Strot, contact hello@getstrot.com promptly and do not circulate the affected material further.
+	•	Changes to this Policy
+We may update this Policy to reflect changes in law, technology, providers or Services. The current version will be posted on getstrot.com with its effective date. For a material change, we may provide an additional notice through the website, app, email or another appropriate channel. Earlier versions may be retained for audit purposes.
+	•	Applicable law and complaints
+This Policy is governed by the laws of the Federal Republic of Nigeria, including the Nigeria Data Protection Act 2023 and applicable regulatory guidance, including the Nigeria Data Protection Act—General Application and Implementation Directive 2025, as amended or replaced.
+We encourage you to contact Strot first so we can address a concern. You also have the right to complain to the Nigeria Data Protection Commission:
+Nigeria Data Protection Commission (NDPC)
+No. 12 Dr Clement Isong Street, Asokoro, Abuja, Nigeria
+Email: info@ndpc.gov.ng
+Telephone: +234 (0) 916 061 5551
+Website: ndpc.gov.ng
+	•	Contact Strot
+Strot Limited
+5, Admiralty Road, Lekki Phase 1, Lagos, Nigeria
+hello@getstrot.com  |  +234 802 253 2118  |  getstrot.com

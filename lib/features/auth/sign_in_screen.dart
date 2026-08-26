@@ -5,8 +5,13 @@ import '../../design_system/strot_tokens.dart';
 import '../portal/portal_shell.dart';
 
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key, required this.authService});
+  const SignInScreen({
+    super.key,
+    required this.authService,
+    this.showMockCredentials,
+  });
   final AuthService authService;
+  final bool? showMockCredentials;
   @override
   State<SignInScreen> createState() => _SignInScreenState();
 }
@@ -135,7 +140,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const Text(
                   'SECURE PROJECT ACCESS',
                   style: TextStyle(
-                    color: StrotColors.gold,
+                    color: StrotColors.goldText,
                     fontWeight: FontWeight.w700,
                     letterSpacing: 2,
                   ),
@@ -150,19 +155,31 @@ class _SignInScreenState extends State<SignInScreen> {
                   'Access decisions, evidence, payments and project records assigned to your role.',
                 ),
                 const SizedBox(height: StrotSpacing.xl),
-                TextField(
-                  controller: email,
-                  keyboardType: TextInputType.emailAddress,
-                  autofillHints: const [AutofillHints.email],
-                  decoration: const InputDecoration(labelText: 'Email address'),
+                Semantics(
+                  label: 'Email address',
+                  textField: true,
+                  child: TextField(
+                    key: const Key('sign-in-email'),
+                    controller: email,
+                    keyboardType: TextInputType.emailAddress,
+                    autofillHints: const [AutofillHints.email],
+                    decoration: const InputDecoration(
+                      labelText: 'Email address',
+                    ),
+                  ),
                 ),
                 const SizedBox(height: StrotSpacing.md),
-                TextField(
-                  controller: password,
-                  obscureText: true,
-                  autofillHints: const [AutofillHints.password],
-                  onSubmitted: (_) => submit(),
-                  decoration: const InputDecoration(labelText: 'Password'),
+                Semantics(
+                  label: 'Password',
+                  textField: true,
+                  child: TextField(
+                    key: const Key('sign-in-password'),
+                    controller: password,
+                    obscureText: true,
+                    autofillHints: const [AutofillHints.password],
+                    onSubmitted: (_) => submit(),
+                    decoration: const InputDecoration(labelText: 'Password'),
+                  ),
                 ),
                 if (error != null) ...[
                   const SizedBox(height: StrotSpacing.md),
@@ -192,7 +209,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 const SizedBox(height: StrotSpacing.md),
-                if (const bool.fromEnvironment('STROT_USE_MOCKS'))
+                if (widget.showMockCredentials ??
+                    const bool.fromEnvironment('STROT_USE_MOCKS'))
                   const Center(
                     child: Text(
                       'Local mock account: client@strot.test / strot-demo',

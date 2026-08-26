@@ -1,0 +1,156 @@
+STROT
+STROT LIMITED
+DATA RIGHTS, ACCOUNT DELETION
+AND RETENTION POLICY
+Your choices, our responsibilities, and what happens to your data
+EFFECTIVE DATE
+26 August 2026
+LAST UPDATED
+26 August 2026
+COMPANY
+Strot Limited
+WEBSITE
+getstrot.com
+QUICK SUMMARY
+You may access, correct, download or request deletion of eligible personal data. Client accounts can initiate full deletion from the app or website. Deletion removes the account and data Strot no longer needs; limited project, payment, security and legal records may be retained for the periods explained in this Policy.
+Your data. Your rights. Accountable handling.
+
+	•	Purpose and scope
+This Data Rights, Account Deletion and Retention Policy ("Policy") explains how individuals can exercise their data-protection rights with Strot Limited ("Strot", "we", "us" or "our"), how account deletion works, what deletion does and does not remove, and how long different records are retained.
+It applies to Strot’s website, client, partner, provider and administrator portals, mobile and desktop applications, APIs, AI tools, consultations, inspections, payments, referrals, projects, media storage and related services (the "Services"). It should be read with the Strot Privacy Policy and Terms of Use. A project contract or legal requirement may impose a longer or more specific retention period.
+Strot is the data controller for the processing it determines. A bank, Nomba, insurer, mortgage provider, social platform or other independent provider may apply its own deletion and retention rules to data it controls.
+	•	Who may make a request
+Account holder. A client, partner, provider, staff member or other authorised user may make a request concerning their own personal data.
+Authorised representative. A representative may act with signed authority or another legally valid mandate. Strot may verify both identities and the scope of authority.
+Organisation contact. A business may request changes to its organisation account, but an individual’s personal-data rights remain personal to that individual.
+Parent or guardian. Where Strot lawfully holds a child’s data, a parent or guardian may act subject to verification and the child’s rights and best interests.
+A request is free of charge in ordinary circumstances. Strot may charge a reasonable fee or refuse a request only where permitted by law, including where a request is manifestly unfounded, excessive or repetitive.
+	•	Your data-protection rights
+Subject to the Nigeria Data Protection Act 2023 and applicable limitations, you may exercise the following rights:
+Right to be informed. Receive clear information about how and why Strot processes personal data.
+Right of access. Confirm whether Strot processes your data and obtain a copy together with relevant processing information.
+Right to rectification. Correct inaccurate data and complete information that is materially incomplete.
+Right to erasure or to be forgotten. Request deletion where there is no overriding lawful reason to retain or continue processing the data.
+Right to restrict processing. Ask Strot to limit use while accuracy, lawfulness, an objection or a legal claim is considered.
+Right to object. Object to eligible processing based on legitimate interests, public interest or direct marketing.
+Right to data portability. Receive eligible data you supplied in a structured, commonly used and machine-readable format or have it transmitted where technically feasible.
+Right to withdraw consent. Withdraw consent at any time where consent is the lawful basis, without affecting earlier lawful processing.
+Rights concerning automated decisions. Request meaningful human intervention, express your view and challenge an eligible solely automated decision with a legal or similarly significant effect.
+Right to complain. Raise a concern with Strot and lodge a complaint with the Nigeria Data Protection Commission (NDPC).
+These rights are not absolute. Strot may limit a response where necessary to protect another person’s rights, legal privilege, confidential business information, public safety, fraud prevention, a legal claim or another ground recognised by law. We will explain any applicable limitation.
+	•	How to submit a data-rights request
+Through your Strot account
+Where available, sign in and go to Settings → Privacy & Security → Data Rights. Choose the request type, review the information shown and submit the request. The dashboard will display its reference number and status.
+By email
+Email hello@getstrot.com with the subject "Privacy Request". State your full name, account email or phone number, the right you want to exercise, the relevant project or transaction if any, and enough detail for us to locate the data.
+What happens next
+Strot will acknowledge the request, normally within five business days.
+We may ask for proportionate identity or authority evidence. Do not send more identification than requested.
+We aim to complete a valid request within 30 days after receiving the request and any information reasonably needed to verify or clarify it.
+If a request is complex, affects many systems or requires consultation with another controller, we may use a lawful extension and explain the reason and expected completion date.
+We will confirm the action taken or explain any lawful refusal, limitation or information we still need.
+	•	Identity verification and request security
+Strot must not disclose or delete an account for the wrong person. Verification may include reauthentication, a one-time code sent to a registered email or phone number, confirmation of recent account activity, a signed authority, or a limited identity document where the risk requires it.
+We will not ask for a password, full payment-card number or one-time code outside the authenticated Strot verification flow. A suspicious request may be paused while we contact the account holder through an existing verified channel.
+Identity material collected solely to verify a rights request will normally be deleted within 90 days after the request is completed, unless it is required for an appeal, fraud investigation, legal claim or mandatory record.
+	•	How client account deletion works
+In the Strot app
+A client can initiate full account deletion from Settings → Privacy & Security → Delete Account. The option will be prominent and will not be replaced by temporary deactivation. The client must review the consequences, reauthenticate and confirm the request.
+On the web
+A client who has uninstalled the app or cannot sign in can use the public deletion route at getstrot.com/account-deletion. The page will allow a deletion request without requiring the app to be reinstalled. Email support remains available for accessibility, locked-account or exceptional cases.
+Processing the request
+Strot disables ordinary sign-in and new account activity after the request is confirmed, subject to any short security-validation step shown to the user.
+Active authentication sessions and eligible social-login tokens are revoked.
+The client receives a request reference, the expected completion date and a final confirmation when deletion is complete.
+Deletion will normally be completed within 30 days. Data isolated in backups may remain for up to 90 additional days before automatic expiry, unless a legal hold applies.
+Creating a new account later does not automatically restore a deleted account, project media, messages, referral history or preferences.
+	•	Partner, provider, staff and administrator accounts
+Only clients self-register. Partner, API-provider, staff and administrator accounts are created by an authorised Strot Super Admin. An authorised user may still request closure and exercise personal-data rights through Settings → Privacy & Security or hello@getstrot.com.
+Closing an individual user profile does not automatically delete the organisation, partner agreement, API integration, assigned project, invoice, audit trail or another user’s records. Strot will remove the individual’s access, delete or anonymise eligible profile data, reassign necessary business records to an authorised account, and retain records required for contracts, professional accountability, security, payments or law.
+An organisation may ask Strot to replace an authorised user without deleting the organisation’s historical project records. No administrator may use account closure to erase evidence of an approval, payment action, report, security event or professional decision.
+	•	What account deletion removes
+Subject to lawful retention, account deletion removes or irreversibly anonymises:
+the login account, password hash, active sessions, device tokens and optional social-login connection;
+profile photograph, optional biography, communication preferences and non-required contact details;
+saved drafts, searches, favourites, unsubmitted forms and personal interface preferences;
+marketing profiles and optional consent-based personalisation;
+eligible private uploads that are not part of a contract, shared project, payment record, dispute or legal requirement;
+AI conversations and support content that are not required for a project, safety review, complaint, security investigation or legal record; and
+other personal data for which Strot no longer has a valid purpose or lawful basis.
+Where complete deletion would break a shared project record, Strot may replace the user’s name with a closed-account identifier, remove unnecessary profile data and retain the underlying event or document for the applicable project period.
+	•	What may be retained after deletion
+Account deletion does not require Strot to erase data that must or may lawfully be retained. Depending on the circumstances, retained records may include:
+Contract and project records. Accepted quotations, instructions, designs, measurements, approvals, variations, site evidence, handover, warranty and claim records.
+Financial records. Invoices, receipts, Nomba references, bank-transfer verification, refunds, payouts, tax and accounting records.
+Safety and professional records. Inspections, certifications, hold points, incidents, defects and records needed to protect people, property or professional accountability.
+Security and anti-fraud records. Login, device, referral, payment, audit and abuse-prevention signals needed to investigate or prevent misuse.
+Disputes and legal obligations. Complaints, legal holds, regulatory requests, insurance matters and evidence required to establish, exercise or defend a claim.
+Suppression records. A minimal email, phone or identifier needed to honour a marketing opt-out, prevent re-contact or enforce a valid exclusion.
+Retained data is isolated from ordinary account use, access is restricted by role and purpose, and the data is deleted or anonymised when the applicable reason and retention period end.
+	•	Active projects, payments and subscriptions
+Deleting an account does not cancel a contract, debt, payment obligation, project instruction, warranty, dispute or statutory record. Before confirming deletion, Strot will warn the client about active projects, pending quotations, outstanding payments, downloadable documents and any effect on access.
+A client may still request deletion during an active project. Strot will close the login profile and minimise personal data while retaining the information needed to perform or administer the contract, protect the client, verify payment and meet legal obligations. A practical replacement communication channel may be agreed where work continues.
+Deleting Strot does not automatically cancel an external subscription, bank mandate, mortgage, insurance policy or third-party service. The user must follow the provider’s cancellation process. Strot will stop its own future optional billing instructions where applicable and lawful.
+	•	Project media, S3 objects and backups
+Strot uses private S3-compatible storage for project and account files. Deletion is applied across the object record, searchable metadata, application references and eligible copies under Strot’s control.
+Temporary signed links are revoked or allowed to expire, and access permissions are removed.
+Eligible private objects are deleted from active storage; versioned copies and backups expire under the backup lifecycle, normally within 90 days.
+A project file may be retained where it evidences approved work, quantity, quality, safety, payment, warranty, a dispute or a legal obligation.
+Where possible, unnecessary faces, identifiers, geotags or profile links may be redacted or separated while the essential project record is preserved.
+Strot will instruct an approved processor to delete eligible copies under its control, while an independent controller follows its own lawful policy.
+	•	Payments, referrals and AI data
+Payments
+Strot deletes unnecessary payment proofs and account-facing payment preferences when the applicable retention period ends. Core transaction, invoice, receipt, refund and reconciliation records may be retained for accounting, fraud, dispute and legal purposes. Nomba and banks control their own records.
+Referrals and rewards
+Deletion removes the user’s referral dashboard and optional campaign profile. Strot may retain a minimal attribution, reward, payout, tax, duplicate-prevention or anti-fraud record. A pending reward remains subject to the programme terms, cleared payment, identity verification and lawful eligibility.
+AI and support data
+AI prompts, outputs and support messages are deleted or anonymised when no longer needed. Items incorporated into a project record, reviewed for safety, involved in a complaint, or required to investigate misuse follow the relevant project, support or security retention period.
+	•	Retention principles
+Strot sets retention periods by considering the original purpose, contract duration, project life cycle, safety and professional responsibilities, legal requirements, limitation periods, tax and accounting duties, warranty and claim risk, fraud prevention, data sensitivity and whether anonymisation can meet the remaining need.
+A retention period may be extended by a legal hold, regulator request, unresolved payment, complaint, warranty, insurance matter or reasonably anticipated claim. When the hold ends, the ordinary schedule resumes. Where data is no longer required, Strot deletes, securely destroys or irreversibly anonymises it.
+	•	Retention schedule
+The following periods are Strot’s operational standards. A contract, law, regulator or documented legal hold may require a different period.
+Record category
+Typical retention period
+Incomplete registrations and failed verification
+Usually 90 days after abandonment, unless needed for security or fraud review.
+Enquiries and unconverted referrals
+Usually 24 months after the last meaningful interaction.
+Active account and core profile
+For the life of the account; eligible profile data is deleted on approved account deletion.
+Closed-account audit record
+Generally 6 years after closure, limited to necessary identifiers, request history and legal evidence.
+Contracts, invoices, receipts, payment proofs and reconciliation
+Generally 7 years after completion or the relevant financial period.
+Project designs, approvals, instructions, site evidence, handover and warranty
+Generally 10 years after project completion, or longer for an active warranty, claim, safety need or agreed archive.
+Partner/provider due diligence, agreements and payouts
+While active and generally 7 years after the relationship ends.
+Support, complaints and rights requests
+Usually 3 years after closure; 6 years where needed to evidence compliance or a dispute.
+Security, access and audit logs
+Usually 12–24 months, longer for an investigation, abuse prevention or legal hold.
+AI prompts and outputs not saved to a project
+Usually up to 12 months for safety, quality and support, then deleted or anonymised.
+Marketing preferences
+Until opt-out, withdrawal or inactivity; a minimal suppression record may be kept afterward.
+Deleted S3 versions and system backups
+Normally expire within 90 days after active deletion, unless subject to a legal hold.
+	•	Data export and portability
+Before deleting an account, a user should download any documents they are entitled to keep. Where available, Settings → Privacy & Security → Download My Data provides an export of eligible account and project information.
+A portability export may include profile data, contact details, project list, messages, preferences, uploaded-file index, referral records and transaction summaries in formats such as JSON, CSV, PDF or original file format. It may exclude another person’s data, privileged material, internal risk logic, confidential pricing methods, copyrighted partner material or information that cannot lawfully be disclosed.
+An export is not a substitute for an official receipt, certified drawing, approval, handover package or professionally signed document. Those remain available through the appropriate project process.
+	•	Correction, restriction, objection and consent
+Users may update routine profile details in account settings. Changes to a legal name, payment identity, property authority, professional credential or completed project record may require supporting evidence and an audit entry rather than overwriting the original record.
+Where processing is restricted, Strot may mark and isolate the data while retaining it for a claim or legal duty. An objection to direct marketing is applied promptly. An objection to legitimate-interest processing will be assessed against Strot’s compelling lawful grounds and the individual’s rights.
+Withdrawing optional consent stops future consent-based processing. It does not invalidate earlier lawful use or prevent processing required for a contract, safety, security, legal obligation or claim.
+	•	Requests involving other people or shared records
+A project may involve an owner, representative, occupants, professionals, workers, referral participants and other users. Strot will not disclose or delete another person’s data merely because it appears in the requester’s project.
+Where a request concerns a shared message, drawing, approval, report, photograph or payment record, Strot will balance the requester’s rights with the rights, safety, contracts and legitimate expectations of others. We may provide a redacted copy, separate an account profile, pseudonymise the requester or retain the shared record with restricted access.
+	•	Appeals and complaints
+If you disagree with Strot’s response, reply to the decision within 30 days and state why you believe it should be reviewed. A different authorised reviewer will reassess the request where practicable and provide the outcome.
+You may also complain to the Nigeria Data Protection Commission:
+Nigeria Data Protection Commission (NDPC), No. 12 Dr Clement Isong Street, Asokoro, Abuja, Nigeria. Email: info@ndpc.gov.ng | Telephone: +234 (0) 916 061 5551 | Website: ndpc.gov.ng
+	•	Changes to this Policy
+Strot may update this Policy for legal, operational, storage, security or service changes. The current version and effective date will appear on getstrot.com, with additional notice for material changes where appropriate. An update does not remove a right provided by law.
+Contact Strot: Strot Limited — Privacy Team, 5 Admiralty Road, Lekki Phase 1, Lagos, Nigeria. hello@getstrot.com | +234 802 253 2118 | getstrot.com

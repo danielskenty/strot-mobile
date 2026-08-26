@@ -93,16 +93,21 @@ import '../../core/team/team_service.dart';
 import '../team/team_screen.dart';
 import '../../core/partner/partner_payout_profile_service.dart';
 import '../partner/partner_payout_settings_screen.dart';
+import '../../core/referrals/referral_service.dart';
+import '../referrals/referrals_screen.dart';
+import '../referrals/referral_admin_screen.dart';
 
 class PortalShell extends StatefulWidget {
-  const PortalShell({super.key, required this.session});
+  const PortalShell({super.key, required this.session, this.useMocks});
   final AuthSession session;
+  final bool? useMocks;
   @override
   State<PortalShell> createState() => _PortalShellState();
 }
 
 class _PortalShellState extends State<PortalShell> {
   int selected = 0;
+  static const compactDestinationCount = 4;
   static const destinations = [
     NavigationDestination(
       icon: Icon(Icons.space_dashboard_outlined),
@@ -182,18 +187,21 @@ class _PortalShellState extends State<PortalShell> {
       icon: Icon(Icons.account_balance_wallet_outlined),
       label: 'Billing details',
     ),
+    NavigationDestination(
+      icon: Icon(Icons.diversity_1_outlined),
+      label: 'Referrals',
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final wide = MediaQuery.sizeOf(context).width >= 840;
+    final wide = MediaQuery.sizeOf(context).width >= 720;
     final partner = widget.session.roles.contains(StrotRole.partner);
     final provider = widget.session.roles.contains(StrotRole.apiProvider);
     final admin = widget.session.roles.contains(StrotRole.superAdmin);
-    final useMocks = const bool.fromEnvironment(
-      'STROT_USE_MOCKS',
-      defaultValue: false,
-    );
+    final useMocks =
+        widget.useMocks ??
+        const bool.fromEnvironment('STROT_USE_MOCKS', defaultValue: false);
     final api = ApiClient(
       baseUrl: ApiClient.defaultBaseUrl,
       token: widget.session.token,
@@ -295,6 +303,9 @@ class _PortalShellState extends State<PortalShell> {
     final partnerPayoutProfile = useMocks
         ? MockPartnerPayoutProfileService()
         : ApiPartnerPayoutProfileService(api);
+    final referrals = useMocks
+        ? MockReferralService()
+        : ApiReferralService(api);
     final activeDestinations = admin
         ? const [
             NavigationDestination(
@@ -381,6 +392,10 @@ class _PortalShellState extends State<PortalShell> {
               icon: Icon(Icons.report_problem_outlined),
               label: 'Issues & RFIs',
             ),
+            NavigationDestination(
+              icon: Icon(Icons.diversity_1_outlined),
+              label: 'Referral governance',
+            ),
           ]
         : provider
         ? const [
@@ -403,6 +418,10 @@ class _PortalShellState extends State<PortalShell> {
             NavigationDestination(
               icon: Icon(Icons.notifications_outlined),
               label: 'Notifications',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.diversity_1_outlined),
+              label: 'Referrals',
             ),
           ]
         : partner
@@ -447,10 +466,16 @@ class _PortalShellState extends State<PortalShell> {
               icon: Icon(Icons.account_balance_outlined),
               label: 'Payout settings',
             ),
+            NavigationDestination(
+              icon: Icon(Icons.diversity_1_outlined),
+              label: 'Referrals',
+            ),
           ]
         : destinations;
     final content = admin
-        ? (selected == 20
+        ? (selected == 21
+              ? ReferralAdminScreen(service: referrals)
+              : selected == 20
               ? IssuesScreen(
                   service: issues,
                   projectService: projects,
@@ -538,7 +563,9 @@ class _PortalShellState extends State<PortalShell> {
               ? OperationsQueueScreen(service: adminService)
               : AdminOverviewScreen(service: adminService))
         : provider
-        ? (selected == 4
+        ? (selected == 5
+              ? ReferralsScreen(service: referrals)
+              : selected == 4
               ? NotificationsScreen(
                   service: notifications,
                   onOpen: (item) => _openNotification(
@@ -555,7 +582,9 @@ class _PortalShellState extends State<PortalShell> {
               ? MessagesScreen(service: messages, canManage: false)
               : ProviderOperationsScreen(service: providerService))
         : partner
-        ? (selected == 9
+        ? (selected == 10
+              ? ReferralsScreen(service: referrals)
+              : selected == 9
               ? PartnerPayoutSettingsScreen(
                   service: partnerPayoutProfile,
                   organizationService: organizationProfile,
@@ -693,6 +722,7 @@ class _PortalShellState extends State<PortalShell> {
               service: billingProfiles,
               organizationService: organizationProfile,
             ),
+            20 => ReferralsScreen(service: referrals),
             10 => NotificationsScreen(
               service: notifications,
               onOpen: (item) => _openNotification(
@@ -734,8 +764,8 @@ class _PortalShellState extends State<PortalShell> {
       appBar: AppBar(
         title: Text(widget.session.organization),
         actions: [
-          IconButton(
-            tooltip: 'Organization details',
+          _AccessibleAppBarAction(
+            label: 'Organization details',
             icon: const Icon(Icons.business_outlined),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
@@ -744,8 +774,8 @@ class _PortalShellState extends State<PortalShell> {
               ),
             ),
           ),
-          IconButton(
-            tooltip: 'Profile and contact details',
+          _AccessibleAppBarAction(
+            label: 'Profile and contact details',
             icon: const Icon(Icons.person_outline),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
@@ -753,8 +783,8 @@ class _PortalShellState extends State<PortalShell> {
               ),
             ),
           ),
-          IconButton(
-            tooltip: 'Synchronisation status',
+          _AccessibleAppBarAction(
+            label: 'Synchronisation status',
             icon: const Icon(Icons.sync_outlined),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
@@ -764,8 +794,8 @@ class _PortalShellState extends State<PortalShell> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: StrotSpacing.md),
-            child: IconButton(
-              tooltip: 'Account security',
+            child: _AccessibleAppBarAction(
+              label: 'Account security',
               icon: const Icon(Icons.verified_user_outlined),
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
@@ -779,34 +809,45 @@ class _PortalShellState extends State<PortalShell> {
       body: wide
           ? Row(
               children: [
-                NavigationRail(
-                  backgroundColor: StrotColors.forest,
-                  indicatorColor: StrotColors.goldMuted,
-                  selectedIconTheme: const IconThemeData(
-                    color: StrotColors.gold,
-                  ),
-                  unselectedIconTheme: const IconThemeData(
-                    color: StrotColors.cream,
-                  ),
-                  selectedLabelTextStyle: const TextStyle(
-                    color: StrotColors.gold,
-                  ),
-                  unselectedLabelTextStyle: const TextStyle(
-                    color: StrotColors.cream,
-                  ),
-                  extended: MediaQuery.sizeOf(context).width >= 1100,
-                  selectedIndex: selected,
-                  onDestinationSelected: (value) =>
-                      setState(() => selected = value),
-                  destinations: activeDestinations
-                      .map(
-                        (item) => NavigationRailDestination(
-                          icon: item.icon,
-                          selectedIcon: item.selectedIcon,
-                          label: Text(item.label),
+                LayoutBuilder(
+                  builder: (context, constraints) => SingleChildScrollView(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minHeight: constraints.maxHeight,
+                      ),
+                      child: IntrinsicHeight(
+                        child: NavigationRail(
+                          backgroundColor: StrotColors.forest,
+                          indicatorColor: StrotColors.goldMuted,
+                          selectedIconTheme: const IconThemeData(
+                            color: StrotColors.gold,
+                          ),
+                          unselectedIconTheme: const IconThemeData(
+                            color: StrotColors.cream,
+                          ),
+                          selectedLabelTextStyle: const TextStyle(
+                            color: StrotColors.gold,
+                          ),
+                          unselectedLabelTextStyle: const TextStyle(
+                            color: StrotColors.cream,
+                          ),
+                          extended: MediaQuery.sizeOf(context).width >= 1100,
+                          selectedIndex: selected,
+                          onDestinationSelected: (value) =>
+                              setState(() => selected = value),
+                          destinations: activeDestinations
+                              .map(
+                                (item) => NavigationRailDestination(
+                                  icon: item.icon,
+                                  selectedIcon: item.selectedIcon,
+                                  label: Text(item.label),
+                                ),
+                              )
+                              .toList(),
                         ),
-                      )
-                      .toList(),
+                      ),
+                    ),
+                  ),
                 ),
                 Expanded(child: content),
               ],
@@ -815,12 +856,73 @@ class _PortalShellState extends State<PortalShell> {
       bottomNavigationBar: wide
           ? null
           : NavigationBar(
-              selectedIndex: selected,
-              onDestinationSelected: (value) =>
-                  setState(() => selected = value),
-              destinations: activeDestinations,
+              selectedIndex: selected < compactDestinationCount
+                  ? selected
+                  : compactDestinationCount,
+              onDestinationSelected: (value) {
+                if (value == compactDestinationCount) {
+                  _showDestinationPicker(activeDestinations);
+                  return;
+                }
+                setState(() => selected = value);
+              },
+              destinations: [
+                ...activeDestinations.take(compactDestinationCount),
+                const NavigationDestination(
+                  icon: Icon(Icons.menu),
+                  selectedIcon: Icon(Icons.menu_open),
+                  label: 'More',
+                ),
+              ],
             ),
     );
+  }
+
+  Future<void> _showDestinationPicker(
+    List<NavigationDestination> destinations,
+  ) async {
+    final destination = await showModalBottomSheet<int>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: StrotColors.cream,
+      builder: (context) => SafeArea(
+        child: SizedBox(
+          height: MediaQuery.sizeOf(context).height * .72,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(StrotSpacing.lg),
+                child: Text(
+                  'All workspace areas',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+              ),
+              const Divider(height: 1),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: destinations.length,
+                  itemBuilder: (context, index) {
+                    final item = destinations[index];
+                    return ListTile(
+                      selected: selected == index,
+                      leading: selected == index
+                          ? item.selectedIcon
+                          : item.icon,
+                      title: Text(item.label),
+                      onTap: () => Navigator.of(context).pop(index),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    if (destination != null && mounted) {
+      setState(() => selected = destination);
+    }
   }
 
   Future<void> _openNotification(
@@ -832,7 +934,44 @@ class _PortalShellState extends State<PortalShell> {
     OperationService operations,
     MessageService messages,
   ) async {
-    final segments = Uri.parse(item.actionUrl ?? '').pathSegments;
+    final uri = Uri.parse(item.actionUrl ?? '');
+    final segments = uri.pathSegments;
+    final referralLink = segments.length >= 2 && segments[1] == 'referrals';
+    final adminReferralLink =
+        segments.length >= 3 &&
+        segments[1] == 'admin' &&
+        segments[2] == 'referrals';
+    if ((referralLink || adminReferralLink) && mounted) {
+      final service = useMocks
+          ? MockReferralService()
+          : ApiReferralService(api);
+      final exact = uri.queryParameters.entries
+          .where(
+            (entry) => [
+              'interest',
+              'lead',
+              'withdrawal',
+              'kyc',
+              'fraud',
+            ].contains(entry.key),
+          )
+          .firstOrNull;
+      await Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (_) => adminReferralLink
+              ? ReferralAdminScreen(
+                  service: service,
+                  initialCategory: exact?.key,
+                  initialId: exact?.value,
+                )
+              : ReferralsScreen(
+                  service: service,
+                  initialLeadId: uri.queryParameters['lead'],
+                ),
+        ),
+      );
+      return;
+    }
     if (segments.length >= 3 && segments[1] == 'approvals') {
       final id = int.tryParse(segments[2]);
       final matches = await approvals.list();
@@ -969,6 +1108,27 @@ class _PortalShellState extends State<PortalShell> {
   }
 }
 
+class _AccessibleAppBarAction extends StatelessWidget {
+  const _AccessibleAppBarAction({
+    required this.label,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  final String label;
+  final Widget icon;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+    label: label,
+    button: true,
+    onTap: onPressed,
+    excludeSemantics: true,
+    child: IconButton(tooltip: label, icon: icon, onPressed: onPressed),
+  );
+}
+
 class _Overview extends StatelessWidget {
   const _Overview({required this.session, required this.service, this.onOpen});
   final AuthSession session;
@@ -988,7 +1148,7 @@ class _Overview extends StatelessWidget {
           const Text(
             'CLIENT WORKSPACE',
             style: TextStyle(
-              color: StrotColors.gold,
+              color: StrotColors.goldText,
               fontWeight: FontWeight.w700,
               letterSpacing: 2,
             ),
@@ -1081,7 +1241,7 @@ class _PartnerOverview extends StatelessWidget {
           const Text(
             'PARTNER WORKSPACE',
             style: TextStyle(
-              color: StrotColors.gold,
+              color: StrotColors.goldText,
               fontWeight: FontWeight.w700,
               letterSpacing: 2,
             ),

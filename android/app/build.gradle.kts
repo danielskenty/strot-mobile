@@ -5,6 +5,26 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+val releaseSigningEnvironment = mapOf(
+    "storeFile" to System.getenv("STROT_ANDROID_KEYSTORE_PATH"),
+    "storePassword" to System.getenv("STROT_ANDROID_KEYSTORE_PASSWORD"),
+    "keyAlias" to System.getenv("STROT_ANDROID_KEY_ALIAS"),
+    "keyPassword" to System.getenv("STROT_ANDROID_KEY_PASSWORD"),
+)
+val releaseBuildRequested = gradle.startParameter.taskNames.any {
+    it.contains("release", ignoreCase = true)
+}
+val missingReleaseSigningValues = releaseSigningEnvironment
+    .filterValues { it.isNullOrBlank() }
+    .keys
+
+if (releaseBuildRequested && missingReleaseSigningValues.isNotEmpty()) {
+    throw GradleException(
+        "Android release signing is not configured. Missing environment-backed values: " +
+            missingReleaseSigningValues.joinToString(", "),
+    )
+}
+
 android {
     namespace = "com.strot.strot_app"
     compileSdk = flutter.compileSdkVersion
@@ -20,21 +40,29 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.strot.strot_app"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        if (missingReleaseSigningValues.isEmpty()) {
+            create("release") {
+                storeFile = file(releaseSigningEnvironment.getValue("storeFile")!!)
+                storePassword = releaseSigningEnvironment.getValue("storePassword")
+                keyAlias = releaseSigningEnvironment.getValue("keyAlias")
+                keyPassword = releaseSigningEnvironment.getValue("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfigs.findByName("release")?.let {
+                signingConfig = it
+            }
         }
     }
 }

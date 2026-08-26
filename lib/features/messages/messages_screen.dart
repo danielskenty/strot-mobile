@@ -24,7 +24,9 @@ class _MessagesScreenState extends State<MessagesScreen> {
   }
 
   void refresh() {
-    setState(() => future = widget.service.list());
+    setState(() {
+      future = widget.service.list();
+    });
   }
 
   @override
@@ -230,7 +232,9 @@ class _ConversationScreenState extends State<ConversationScreen> {
                           if (reply.text.trim().isEmpty) return;
                           await widget.service.reply(item.id, reply.text);
                           reply.clear();
-                          setState(() => future = widget.service.get(item.id));
+                          setState(() {
+                            future = widget.service.get(item.id);
+                          });
                         },
                         child: const Text('Send reply'),
                       ),
@@ -244,7 +248,9 @@ class _ConversationScreenState extends State<ConversationScreen> {
                 child: OutlinedButton(
                   onPressed: () async {
                     await widget.service.updateStatus(item.id, 'resolved');
-                    setState(() => future = widget.service.get(item.id));
+                    setState(() {
+                      future = widget.service.get(item.id);
+                    });
                   },
                   child: const Text('Mark resolved'),
                 ),
